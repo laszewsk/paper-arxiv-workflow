@@ -1258,53 +1258,32 @@ Minimal support for access via authentication and authorization &  \YES   & \YES
 \hline
 Minimal support for virtualization in the cloud & \YES    &    \\ 
 \hline
-Batch access and direct access &  \YES   &  \YES  \\
+Batch access and direct access &  \YES   &  \YES  \\ \hline
+Cloud HPC resources &   \YES  &    \\ \hline
+Container and virtual machine support &  \YES   & singularity   \\ \hline
 \hline
-Cloud HPC resources &   \YES  &    \\
+\multicolumn{3}{|l|}{\bf\em Implications from Section 2.2 User Requirements}\\ \hline
 \hline
-Container and virtual machine support &  \YES   & singularity   \\
+Wide Variety of Users &  developer, user  & developer    \\ \hline
+Ease of Use (trhough) &  Python, OpenAPI, scripts, templates, YAML  &  Python  \\ \hline
+Experiment Automation &  \YES   &  \YES  \\ \hline
+Experiment Reporting &   filesystem, integratable into database  &  filesystem \\ \hline
+Portability &  \YES   & \YES   \\ \hline
+Cost Considerations &  prototype Plugin  &    \\ \hline
+Benchmark Carpentry &  Manual, examplesin git repo   &  Manual, examples in git repo \\ \hline
 \hline
+\multicolumn{3}{|l|}{\bf\em Implications from Sections 2.3 to 2.7}\\ \hline
 \hline
-\multicolumn{3}{|l|}{\bf\em Implications from Section 2.2 User Requirements}\\
-\hline
-\hline
-Wide Variety of Users &  developer, user  & developer    \\
-\hline
-Ease of Use (trhough) &  Python, OpenAPI, scripts, templates, YAML  &  Python  \\
-\hline
-Experiment Automation &  \YES   &  \YES  \\ 
-\hline
-Experiment Reporting &   filesystem, integratable into database  &  filesystem \\
-\hline
-Portability &  \YES   & \YES   \\
-\hline
-Cost Considerations &  prototype Plugin  &    \\
-\hline
-Benchmark Carpentry &  Manual, examplesin git repo   &   
-\hline Manual, examples in git repo \\
-\hline
-\hline
-\multicolumn{3}{|l|}{\bf\em Implications from Sections 2.3 to 2.7}\\
-\hline
-\hline
-Workflow specification &  YAML, Python, scripts   & Python   \\
-Workflow Templates &  \YES   &  \YES  \\ 
-\hline
-Template Repositories & self-managed    &  self-managed  \\ 
-\hline
-Experiment Reporting &  self-managed   & self-managed   \\ 
-\hline
-Runtime support for dynamic, Cyclic, pipeline, and DAG Executions &     \YES & \YES \\
-\hline
-Runtime Batch Queuing Integration &  \YES   & \YES   \\
-\hline
-Authentication and Authorization &  SSH, split-vpn, extensible   & focus on single hardware executions  \\
-\hline
-Data Management & filesystem, prototype cloudstorage interfaces   & filestystem, Redis   \\
-\hline
+Workflow specification &  YAML, Python, scripts   & Python   \\ \hline
+Workflow Templates &  \YES   &  \YES  \\ \hline
+Template Repositories & self-managed    &  self-managed  \\ \hline
+Experiment Reporting &  self-managed   & self-managed   \\ \hline
+Runtime support for dynamic, Cyclic, pipeline, and DAG Executions &     \YES & \YES \\ \hline
+Runtime Batch Queuing Integration &  \YES   & \YES   \\ \hline
+Authentication and Authorization &  SSH, split-vpn, extensible   & focus on single hardware executions  \\ \hline
+Data Management & filesystem, prototype cloudstorage interfaces   & filestystem, Redis   \\ \hline
 Licensing & Apache 2.0. replaced mongodb due to license 
-issues    & Redis, will likely replace redis due to license change \\
-\hline
+issues    & Redis, will likely replace redis due to license change \\ \hline
 \end{tabular}
 }
 \end{table*}
