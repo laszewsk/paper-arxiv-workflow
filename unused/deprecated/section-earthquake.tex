@@ -1,0 +1,101 @@
+\section{Earthquake Forecasting}
+\label{sec:eq}
+
+The scientific objective of the earthquake benchmark is to extract the
+evolution using earthquake forecasting while utilizing time series forecasting.
+
+The earthquake benchmark uses a subset of the overall earthquake
+dataset for the region of Southern California. While conventional
+forecasting methods rely on statistical techniques, we use ML
+for extracting the evolution and testing the effectiveness of the
+forecast.  As a metric, we use the Nash-Sutcliffe Efficiency (NSE)
+\citep{nash-79}.  Other qualitative predictions are discussed in
+~\citep{fox2022-jm}.
+
+One of the common tasks when dealing with time series is the ability
+to predict or forecast them in advance.  Time series capture the
+variation of values against time and can have multiple dimensions. For
+example, in earthequake forecasting, we use geospatial datasets that have
+two dimensions based both on time and spatial position. The prediction
+is considerably easier when we can identify an evolution structure
+across dimensions. For example, in earthquakes, we find a strong
+correlation between nearby spatial points. Hence close by spacial
+points influence each other and simplify the time series prediction
+for an area.  However, as earthquake faults and other geometric features
+are not uniformly distributed, such correlations are often not clearly
+defined in spatial regions. Thus it is important not just to look at
+the region, but also at the evolution in time series. This benchmark
+extracts the evolution of time series applied to earthquake forecasting.
+
+
+\subsection{Earthquake Data}
+
+The data for this earthquake is described in
+\citep{las-22-mlcommons-science}.  It uses a subset of the earthquake
+data from the United States Geological Survey (USGS) focused on Southern
+California between latitude: $32^\circ$N to $36^\circ$N and longitude:
+$-120^\circ$S to $-114^\circ$S). The data for this region covers all
+earthquakes since 1950. The data includes four measurements per
+record: magnitude, spatial location, depth from the crust, and
+time. We curated the dataset and reorganized it in different
+temporal and spatial bins. ``Although the actual time lapse between
+measurements is one day, we accumulate this into fortnightly
+data. The region is then divided into a grid of $40\times 60$ with
+each pixel covering an actual zone of $0.1\deg\times 0.1$ or
+$11km\times 11km$ grid. The dataset also includes an assignment of
+pixels to known faults and a list of the largest earthquakes in that
+region from 1950. We have chosen various samplings of the dataset to
+provide both input and predicted values. These include time ranges
+from a fortnight up to four years. Furthermore, we calculate summed
+magnitudes and depths and counts of significant quakes (magnitude $<
+3.29$).''  Table~\ref{tab:eq-summary} depicts the key features of the
+benchmark \citep{las-22-mlcommons-science}.
+
+
+\begin{table}
+\caption{Summary of the Earthquake {\em tevelop} Benchmark}\label{tab:eq-summary}
+% \resizebox{1.0\textwidth}{!}{
+\begin{center}
+  {\footnotesize
+\begin{tabular}{p{0.2\columnwidth}p{0.2\columnwidth}p{0.45\columnwidth}}
+\hline
+{\bf Area} & \multicolumn{2}{l}{Earthquake Forecasting~\citep{fox2022-jm,TFT-21,eq-code,eq-data}.}\\
+\hline
+{\bf Objectives} &  \multicolumn{2}{l}{Improve the quality of Earthquake
+forecasting in a region of Southern California.}\\
+\hline
+{\bf Metrics} & \multicolumn{2}{l}{Normalized Nash-Sutcliffe model efficiency coefficient (NNSE)with $0.8\leq NNSE\leq 0.99$}\\
+\hline
+{\bf Data}  & Type:  & Richter Measurements with spatial and temporal information (Events). \\
+  &  Input:  & Earthquakes since 1950.\\
+  &  Size:  & 11.3GB (Uncompressed), 21.3MB (Compressed)\\
+  & Training samples: & 2,400 spatial bins\\
+  & Validation samples:  &  100 spatial bins\\
+  & Source:  & USGS Servers~\citep{eq-data}\\
+\hline
+{\bf Reference Implementation} & \citep{eq-code} & \\
+% \hline
+\hline
+\end{tabular}
+}
+\end{center}
+%}
+\end{table}
+
+
+\subsection{Implementation}
+
+The reference implementation of the benchmark includes three
+distinct deep learning-based reference implementations. These are Long
+short-term memory (LSTM)-based model, Google Temporal Fusion
+Transformer (TFT)~\citep{TFT-21}-based model and a custom hybrid
+transformer model. The TFT-based model uses two distinct LSTMs,
+covering an encoder and a decoder with a temporal attention-based
+transformer. The custom model includes a space-time transformer for
+the Decoder and a two-layer LSTM for the encoder. Each model predicts
+NSE and generates visualizations illustrating the TFT for
+interpretable multi-horizon time series
+forecasting~\citep{TFT-21}. Details of the current reference models can
+be found in~\citep{fox2022-jm}.  In this paper, we only focus on the
+LSTM implementation.
+

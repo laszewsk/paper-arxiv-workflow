@@ -1,0 +1,274 @@
+\begin{comment}
+Figures~\ref{fig:six-graphs} show accuracy values of NNSE with
+various epoch values for training and validation. We chose here 2, 30,
+and 70 epochs.  We have then created tables for the NNSE values for
+each of the epochs and sorted them by value. The higher the NNSE
+accuracy value is the better. We have created tables for the 2, 30,
+and 70 epoch hyper-parameters. In addition, we highlighted in the table
+the best training value with red, the second best with blue, and the
+third best with three. We also highlighted the corresponding value in
+the inference column that corresponds to the hyperparameter for the
+time period used in the input and output parameters. While we see for
+the 2 and 30 epoch cases the same order for these three values, we see
+a different order for the 70 epoch case. This can be explained through
+overfitting. Overall we find that the best accuracy can be found for
+\end{comment}
+
+\begin{comment}
+  \centering
+    \includegraphics[width=0.70\columnwidth]{images/performance-projection.png}
+    \caption{Performance projection. }
+    \label{fig:performance-projection}
+  \end{comment}
+    
+
+
+\begin{comment}
+
+\begin{figure}[htb]
+
+  \begin{center}
+
+     \begin{minipage}[b]{0.45\textwidth}
+       \includegraphics[width=1.0\linewidth]{images/2_training-MSE-and-NNSE.pdf}
+        {\bf (A)} MSE and NNSE - 2 epochs training.
+    \end{minipage}
+     \ \
+     \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/2_validation-MSE-and-NNSE.pdf}
+        {\bf (B)}  MSE and NNSE - 2 epochs validation.
+     \end{minipage}
+
+     \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/30_training-MSE-and-NNSE.pdf}
+        {\bf (C)} MSE and NNSE - 30 epochs training.
+     \end{minipage}
+     \ \
+     \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/30_validation-MSE-and-NNSE.pdf}
+        {\bf (D)} MSE and NNSE - 30 epochs validation.
+     \end{minipage}
+
+     \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/70_training-MSE-and-NNSE.pdf}
+        {\bf (E)} MSE and NNSE - 70 epochs training.
+     \end{minipage}
+     \ \
+     \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/70_validation-MSE-and-NNSE.pdf}
+        {\bf (F)}  MSE and NNSE - 70 epochs validation.
+     \end{minipage}
+\end{center}
+
+     \caption{NNSE and MSE values for training and validation for epochs 2 (A, B), 30 (C, D), 70 (E, F).}
+     \label{fig:six-graphs}
+\end{figure}
+
+\end{comment}
+
+%we have finalized the EQ code but want to make absolutely sure that we
+%look at the correct values for the scientific comparison.
+%
+%This also requires a small sentence to each variable. Could we have a
+%small meeting and I take then some notes on what these values are
+%tomorrow. I will then add the explanations to the MLCommons EQ benchmark
+%policy document.
+%
+%I just want to make sure I understand over which domain we average and
+%sum up.
+%
+%Also if we were to just do one value (just in case they ask, I think we
+%would use the summed up total right. However I think it is better to
+%keep all of them.)
+%
+%Also I forgot what the +26 refers to
+%
+%I think something like this is almost correct, but we need to +26
+%explanation and get verification from you.
+%
+%The Magnification based on a years worth of back data, while looking two
+%weeks ahead + 26 what?
+
+\begin{comment}
+\begin{table}[p]
+
+  \caption{Training and validation with time-based hyperparameters
+    sorted by NNSE accuracy. The table includes the best two
+    values highlighted in the training and validation results to
+    showcase the accuracy of the validation. In the validation,
+    we see that the best value for training is in rank four for the
+    validation. The number of Epochs for this experiment is 2.
+    26 is half of 52 and so 26 2-week intervals is a year.}
+  \label{tab:training-2}
+
+  \renewcommand{\arraystretch}{1.2}
+  \begin{center}
+    {\footnotesize
+\begin{tabular}{|r|rl||rl|}
+  \hline
+{\bf Rank} & \multicolumn{2}{c||}{\bfseries Training} & \multicolumn{2}{c|}{\bfseries Validation}  \\
+     &   {\bf NNSE} & {\bf Hyperparameters} & {\bf NNSE} & {\bf Hyperparameters} \\
+\hline
+1 & \color{red}  0.521800 & \color{red} Now 2wk+26AVG & \color{red} 0.502300 & \color{red} Now 2wk+26AVG \\
+2 & \color{blue} 0.506800 & \color{blue} 2 weeks Now & \color{blue} 0.470100 & \color{blue} 2 weeks Now \\
+3 & \color{teal} 0.429900 & \color{teal} Now 2wk+13AVG & \color{teal} 0.412700 & \color{teal} Now 2wk+13AVG \\
+4 & 0.405600 & Now 2wk+7AVG & 0.379700 & Now 2wk+7AVG \\
+5 & 0.302500 & 3M 2wk+26AVG & 0.295800 & 3M 2wk+26AVG \\
+6 & 0.278800 & 3M 2wk+13AVG & 0.270300 & 1Y 2wk+26AVG \\
+7 & 0.251700 & 6M 2wk+26AVG & 0.266200 & 3M 2wk+13AVG \\
+8 & 0.251600 & 1Y 2wk+26AVG & 0.264400 & 6M 2wk+26AVG \\
+9 & 0.243000 & 3M 2wk+7AVG & 0.249500 & 1Y 2wk+7AVG \\
+10 & 0.235800 & 1Y 2wk+7AVG & 0.238200 & 1Y 2wk+13AVG \\
+11 & 0.233000 & 3 Months Back & 0.228900 & 3M 2wk+7AVG \\
+12 & 0.232600 & 1Y 2wk+13AVG & 0.219700 & 3 Months Back \\
+13 & 0.201600 &  6 Months Back & 0.204500 & Year Back \\
+14 & 0.197000 & 6M 2wk+13AVG & 0.201600 & 6M 2wk+13AVG \\
+15 & 0.192700 &  6M 2wk+7AVG &  0.201000 & 6 Months Back \\
+16 &  0.191300 & Year Back & 0.195200 & 6M 2wk+7AVG \\
+\hline
+\end{tabular}
+}
+\end{center}
+
+%\end{table}
+
+%\begin{table}[htb]
+
+  \caption{Training and validation with time-based hyperparameters
+    sorted by NNSE accuracy. The table includes the best two
+    values highlighted in the training and validation results to
+    showcase the accuracy of the validation. In the validation,
+    we see that the best value for training is in rank four for the
+    validation. The number of Epochs for this experiment is 30.
+  }
+  \label{tab:training-30}
+
+  \renewcommand{\arraystretch}{1.2}
+  \begin{center}
+        {\footnotesize
+\begin{tabular}{|r|rl||rl|}
+\hline
+{\bf Rank} &
+\multicolumn{2}{c||}{\bfseries Training} &
+\multicolumn{2}{c|}{\bfseries Validation} \\
+     {\bf NNSE} &
+     {\bf Hyperparameters} &
+     {\bf NNSE} &
+     {\bf Hyperparameters} \\
+\hline
+1 & \color{red} 0.586000 & \color{red} Now 2wk+26AVG & \color{red} 0.484100 & \color{red} Now 2wk+26AVG \\
+2 & \color{blue} 0.559200 & \color{blue} Now 2wk+13AVG & \color{blue} 0.453000 & \color{blue} Now 2wk+13AVG \\
+3 & \color{teal} 0.517900 & \color{teal} Now 2wk+7AVG & \color{teal}0.409300 & \color{teal} Now 2wk+7AVG \\
+4 & 0.488800 & 2 weeks Now & 0.398900 & 3M 2wk+26AVG \\
+5 & 0.450800 & 3M 2wk+26AVG & 0.384100 & 2 weeks Now \\
+6 & 0.418900 & 6M 2wk+26AVG & 0.374500 & 6M 2wk+26AVG \\
+7 & 0.394600 & 3M 2wk+13AVG & 0.343400 & 3M 2wk+13AVG \\
+8 & 0.341800 & 6M 2wk+13AVG & 0.302800 & 6M 2wk+13AVG \\
+9 & 0.330300 & 3M 2wk+7AVG & 0.291900 & 3M 2wk+7AVG \\
+10 & 0.319600 & 1Y 2wk+26AVG & 0.290100 & 1Y 2wk+26AVG \\
+11 & 0.208100 & 6M 2wk+7AVG & 0.186200 & 6M 2wk+7AVG \\
+12 & 0.171600 & 1Y 2wk+13AVG & 0.153600 & 1Y 2wk+13AVG \\
+13 & 0.089700 & 3 Months Back & 0.090400 & 3 Months Back \\
+14 & 0.082900 & 1Y 2wk+7AVG & 0.076500 & 1Y 2wk+7AVG \\
+15 & 0.069500 &  6 Months Back & 0.070300 & 6 Months Back \\
+16 &  0.047600 & Year Back & 0.050500 & Year Back \\
+\hline
+\end{tabular}
+}
+
+\end{center}
+\end{table}
+
+
+\begin{table}[htb]
+
+  \caption{Training and validation with time-based hyperparameters
+    sorted by NNSE accuracy. The table includes the best two
+    values highlighted in the training and validation results to
+    showcase the accuracy of the validation. In the validation,
+    we see that the best value for training is in rank four for the
+    validation. The number of Epochs for this experiment is 70.}
+  \label{tab:training-70}
+
+  \renewcommand{\arraystretch}{1.2}
+  \begin{center}
+        {\footnotesize
+\begin{tabular}{|r|rl||rl|}
+  \hline
+{\bf Rank} & \multicolumn{2}{c||}{\bfseries Training} & \multicolumn{2}{c|}{\bfseries Validation} \\
+     &   {\bf NNSE} & {\bf Hyperparameters} & {\bf NNSE} & {\bf Hyperparameters} \\
+              \hline
+ 01 & \color{red} 0.490400 & \color{red} Now 2wk+26AVG & \color{red} 0.412500 & \color{red} Now 2wk+26AVG \\
+ 02 & \color{blue} 0.465800 & \color{blue}  Now 2wk+13AVG & \color{blue} 0.385800 & \color{blue} Now 2wk+13AVG \\
+ 03 & \color{teal} 0.441300 &  \color{teal} Now 2wk+7AVG & 0.370700 & 3M 2wk+26AVG \\
+ 04 & 0.425700 & 2 weeks Now & \color{teal} 0.359400 & \color{teal} Now 2wk+7AVG \\
+ 05 & 0.421000 & 3M 2wk+26AVG & 0.344500 & 2 weeks Now \\
+ 06 & 0.385200 & 3M 2wk+13AVG & 0.333000 & 3M 2wk+13AVG \\
+ 07 & 0.335400 & 3M 2wk+7AVG & 0.293500 & 1Y 2wk+26AVG \\
+ 08 & 0.318800 & 1Y 2wk+26AVG & 0.291100 & 3M 2wk+7AVG \\
+ 09 & 0.295900 & 6M 2wk+26AVG & 0.269700 & 6M 2wk+26AVG \\
+ 10 & 0.252100 & 6M 2wk+13AVG & 0.235400 & 6M 2wk+13AVG \\
+ 11 & 0.153500 & 1Y 2wk+13AVG & 0.142800 & 1Y 2wk+13AVG \\
+ 12 & 0.138400 & 6M 2wk+7AVG & 0.133700 & 6M 2wk+7AVG \\
+ 13 & 0.105300 & 6 Months Back & 0.102200 & 6 Months Back \\
+ 14 & 0.083100 & 1Y 2wk+7AVG & 0.084300 & 1Y 2wk+7AVG \\
+ 15 & 0.073500 & Year Back & 0.071200 & Year Back \\
+ 16 & 0.067400 & 3 Months Back & 0.069800 & 3 Months Back \\
+\hline
+\end{tabular}
+}
+  \end{center}
+
+
+\end{table}
+
+\end{comment}
+
+
+%%%%%%%
+
+\begin{comment}
+
+\begin{figure}[p]
+
+  \begin{center}
+     \begin{minipage}[t]{0.65\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/NNSE-all-epochs-training}
+        {\bf (A)} NNSE for training.
+     \end{minipage}
+  \end{center}
+  \ \
+  \begin{center}
+     \begin{minipage}[t]{0.65\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/NNSE-all-epochs-validation}
+        {\bf (B)} NNSE for validation.
+     \end{minipage}
+  \end{center}
+
+  \caption {NNSE comparison}
+  \label{fig:NNSE-comparison-v100}
+
+\end{figure}
+
+\end{comment}
+
+\begin{figure}[p]
+
+  \begin{center}
+     \begin{minipage}[t]{0.65\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/frequency_nnse_histogram_70_training.pdf}
+        {\bf (A)} NNSE for training.
+     \end{minipage}
+  \end{center}
+  \ \
+  \begin{center}
+     \begin{minipage}[t]{0.65\textwidth}
+        \includegraphics[width=1.0\linewidth]{images/frequency_nnse_histogram_70_validation.pdf}
+        {\bf (B)} NNSE for validation.
+     \end{minipage}
+  \end{center}
+
+  \caption {NNSE comparison}
+  \label{fig:NNSE-history-a100}
+
+\end{figure}

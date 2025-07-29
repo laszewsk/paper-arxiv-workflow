@@ -1,0 +1,127 @@
+PLEASE CHECK IF s-related replaces all of this. COntact me if something in s-related is missing ...
+
+\section{Related Work}
+
+The paper \citep{dube_future_2021} highlights a shift to hybrid models that combine cloud computing and local infrastructure running on-premises. This model enables flexibility in where the workloads are executed, which enables optimization and simplified resource administration.
+LLMs are computationally expensive methods that need to be trained primarily on large amounts of data. HPC workflows offer high-performance computing capabilities that allow LLMs to quickly and efficiently process massive amounts of data.  This is especially relevant as LLMs are driving compute requirements towards zettaflop levels, which HPC systems are well-tuned to address \citep{ferreira_da_silva_workflows_2024}.
+HPC systems are widely used in bioinformatics, astronomy, and earth sciences, where the computational tasks are arranged as scientific workflows.  But such workflows are rarely tuned for HPC platforms leading to a gap in performance compared to traditional HPC codes. To mitigate this, \citep{pottier_modeling_2020} introduced, burst buffers (BBs) as a burst of fast storage layered between compute nodes and the global parallel file system.  The previous works focus on two main architectures: shared burst buffers (on dedicated nodes) and on-node burst buffers (with nodes).  These paradigms need to be understood to optimise the data management for scientific workflows.  While this work does build on existing research, it seeks to measure their impact and propose some workflow-based optimizations particularly suited for the HPC environments.
+Machine learning research requires setup of experimental environments as well as the deployment and maintenance of models so that researchers can spend time on time-consuming tasks. Machine Learning Operations (MLOps) solve such concerns by optimizing the ML lifecycle from building, deploying, and maintaining the model. To put MLOps into action, the authors in this paper \citep{hsu_end--end_2024} look into Kubeflow, an open-source platform that provides the main tools any user would need, such as pipelines for workflow orchestration, Katib for automated hyperparameter tuning, and KServe for deploying models. The experimental results show that it reduces manual effort and significantly increases the efficiency of operations that are typical for MLOps.
+
+
+
+
+%%%%
+%%%% JACQUES (J.P.) ADDITIONS
+
+Training large language models (LLM) often requires hundreds to thousands of graphics processing units (GPUs)~\citep{jiang2024megascalescalinglargelanguage}. These GPUs must have sufficient video random access memory (VRAM) such that they can retain model parameters, often in the magnitude of billions or trillions, during training. The input data required to train the LLM, such as text corpora, demands large disk requirements; for example, Common Crawl, a repository of web data, uses hundreds of terabytes~\citep{8311752}. Running inference on LLMs is much more feasible, even for at-home computing environments, where resource-friendly LLMs such as Gemma or Vicuna-7b can fit their 14GB VRAM requirement within a high-end consumer GPU~\citep{xu2024surveyresourceefficientllmmultimodal}.
+
+
+
+%%%%
+%%%%
+
+%----------------------------------------------------------------------
+%begin References
+
+
+@article{dube_future_2021,
+	title = {Future of {HPC}: {The} {Internet} of {Workflows}},
+	volume = {25},
+	copyright = {https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html},
+	issn = {1089-7801, 1941-0131},
+	shorttitle = {Future of {HPC}},
+	url = {https://ieeexplore.ieee.org/document/9522103/},
+	doi = {10.1109/MIC.2021.3103236},
+	number = {5},
+	urldate = {2025-02-19},
+	journal = {IEEE Internet Computing},
+	author = {Dube, Nicolas and Roweth, Duncan and Faraboschi, Paolo and Milojicic, Dejan},
+	month = sep,
+	year = {2021},
+	pages = {26--34},
+}
+
+
+@techreport{ferreira_da_silva_workflows_2024,
+	title = {Workflows {Community} {Summit} 2024: {Future} {Trends} and {Challenges} in {Scientific} {Workflows}},
+	copyright = {Creative Commons Attribution 4.0 International},
+	shorttitle = {Workflows {Community} {Summit} 2024},
+	url = {https://zenodo.org/doi/10.5281/zenodo.13844758},
+	abstract = {The 2024 Workflows Community Summit report presents the outcomes of a three-day international gathering that brought together 111 experts from 18 countries to discuss future trends and challenges in scientific workflows. The summit focused on six key areas: time-sensitive workflows, convergence of AI and HPC workflows, multi-facility workflows, heterogeneous HPC environments, user experience and interfaces, and FAIR computational workflows. Discussions highlighted emerging challenges such as integrating AI with traditional HPC, managing workflows across diverse facilities, addressing heterogeneity in computing environments, and ensuring workflows are findable, accessible, interoperable, and reusable (FAIR). The report outlines recent advances, ongoing challenges, and provides recommendations for each topic area, emphasizing the need for standardization, improved interoperability, and the development of more sophisticated tools and frameworks to support the evolving landscape of scientific workflows in the era of exascale computing and AI integration.},
+	language = {en},
+	urldate = {2025-02-19},
+	institution = {Zenodo},
+	author = {Ferreira da Silva, Rafael and Bard, Deborah and Chard, Kyle and Shaun, de Witt and Foster, Ian T. and Gibbs, Tom and Goble, Carole and Godoy, William and Gustafsson, Johan and Haus, Utz-Uwe and Hudson, Stephen and Jha, Shantenu and Los, Laila and Paine, Drew and Suter, Frédéric and Ward, Logan and Wilkinson, Sean and Amaris, Marcos and Babuji, Yadu and Bader, Jonathan and Balin, Riccardo and Balouek, Daniel and Beecroft, Sarah and Belhajjame, Khalid and Bhattarai, Rajat and Brewer, Wes and Brunk, Paul and Caino-Lores, Silvina and Casanova, Henri and Cassol, Daniela and Coleman, Jared and Coleman, Taina and Colonnelli, Iacopo and Da Silva, Anderson Andrei and de Oliveira, Daniel and Elahi, Pascal and Elfaramawy, Nour and Elwasif, Wael and Etz, Brian and Fahringer, Thomas and Ferreira, Wesley and Filgueira, Rosa and Fosso Tande, Jacob and Gadelha, Luiz and Gallo, Andy and Garijo, Daniel and Georgiou, Yiannis and Gritsch, Philipp and Grubel, Patricia and Gueroudji, Amal and Guilloteau, Quentin and Hamalainen, Carlo and Hong Enriquez, Rolando and Huet, Lauren and Hunter Kesling, Kevin and Iborra, Paula and Jahangiri, Shiva and Janssen, Jan and Jordan, Joe and Kanwal, Sehrish and Kunstmann, Liliane and Lehmann, Fabian and Leser, Ulf and Li, Chen and Liu, Peini and Luettgau, Jakob and Lupat, Richard and M. Fernandez, Jose and Maheshwari, Ketan and Malik, Tanu and Marquez, Jack and Matsuda, Motohiko and Medic, Doriana and Mohammadi, Somayeh and Mulone, Alberto and Navarro, John-Luke and Ng, Kin Wai and Noelp, Klaus and P. Kinoshita, Bruno and Prout, Ryan and R. Crusoe, Michael and Ristov, Sashko and Robila, Stefan and Rosendo, Daniel and Rowell, Billy and Rybicki, Jedrzej and Sanchez, Hector and Saurabh, Nishant and Saurav, Sumit Kumar and Scogland, Tom and Senanayake, Dinindu and Shin, Woong and Sirvent, Raul and Skluzacek, Tyler and Sly-Delgado, Barry and Soiland-Reyes, Stian and Souza, Abel and Souza, Renan and Talia, Domenico and Tallent, Nathan and Thamsen, Lauritz and Titov, Mikhail and Tovar, Benjamin and Vahi, Karan and Vardar-Irrgang, Eric and Vartina, Edite and Wang, Yuandou and Wouters, Merridee and Yu, Qi and Al Bkhetan, Ziad and Zulfiqar, Mahnoor},
+	month = oct,
+	year = {2024},
+	doi = {10.5281/ZENODO.13844758},
+}
+
+
+@inproceedings{pottier_modeling_2020,
+	address = {Kobe, Japan},
+	title = {Modeling the {Performance} of {Scientific} {Workflow} {Executions} on {HPC} {Platforms} with {Burst} {Buffers}},
+	copyright = {https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html},
+	isbn = {978-1-7281-6677-3},
+	url = {https://ieeexplore.ieee.org/document/9229642/},
+	doi = {10.1109/CLUSTER49012.2020.00019},
+	urldate = {2025-02-19},
+	booktitle = {2020 {IEEE} {International} {Conference} on {Cluster} {Computing} ({CLUSTER})},
+	publisher = {IEEE},
+	author = {Pottier, Loic and Da Silva, Rafael Ferreira and Casanova, Henri and Deelman, Ewa},
+	month = sep,
+	year = {2020},
+	pages = {92--103},
+}
+
+
+@inproceedings{hsu_end--end_2024,
+	address = {Taichung, Taiwan},
+	title = {End-to-{End} {Automation} of {ML} {Model} {Lifecycle} {Management} using {Machine} {Learning} {Operations} {Platforms}},
+	copyright = {https://doi.org/10.15223/policy-029},
+	isbn = {979-8-3503-8684-4},
+	url = {https://ieeexplore.ieee.org/document/10674445/},
+	doi = {10.1109/ICCE-Taiwan62264.2024.10674445},
+	urldate = {2025-02-19},
+	booktitle = {2024 {International} {Conference} on {Consumer} {Electronics} - {Taiwan} ({ICCE}-{Taiwan})},
+	publisher = {IEEE},
+	author = {Hsu, Chung-Chian and Chen, Pin-Han and Wu, I-Zhen},
+	month = jul,
+	year = {2024},
+	pages = {209--210},
+}
+
+%end references
+%----------------------------------------------------------------------
+
+% JPF references
+@misc{jiang2024megascalescalinglargelanguage,
+      title={MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs}, 
+      author={Ziheng Jiang and Haibin Lin and Yinmin Zhong and Qi Huang and Yangrui Chen and Zhi Zhang and Yanghua Peng and Xiang Li and Cong Xie and Shibiao Nong and Yulu Jia and Sun He and Hongmin Chen and Zhihao Bai and Qi Hou and Shipeng Yan and Ding Zhou and Yiyao Sheng and Zhuo Jiang and Haohan Xu and Haoran Wei and Zhang Zhang and Pengfei Nie and Leqi Zou and Sida Zhao and Liang Xiang and Zherui Liu and Zhe Li and Xiaoying Jia and Jianxi Ye and Xin Jin and Xin Liu},
+      year={2024},
+      eprint={2402.15627},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2402.15627}, 
+}
+
+@misc{xu2024surveyresourceefficientllmmultimodal,
+      title={A Survey of Resource-efficient LLM and Multimodal Foundation Models}, 
+      author={Mengwei Xu and Wangsong Yin and Dongqi Cai and Rongjie Yi and Daliang Xu and Qipeng Wang and Bingyang Wu and Yihao Zhao and Chen Yang and Shihe Wang and Qiyang Zhang and Zhenyan Lu and Li Zhang and Shangguang Wang and Yuanchun Li and Yunxin Liu and Xin Jin and Xuanzhe Liu},
+      year={2024},
+      eprint={2401.08092},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2401.08092}, 
+}
+
+@INPROCEEDINGS{8311752,
+  author={Mehmood, Muhammad Amir and Shafiq, Hafiz Muhammad and Waheed, Abdul},
+  booktitle={2017 IEEE 13th Malaysia International Conference on Communications (MICC)}, 
+  title={Understanding regional context of World Wide Web using common crawl corpus}, 
+  year={2017},
+  volume={},
+  number={},
+  pages={164-169},
+  keywords={Web pages;World Wide Web;Tools;Europe;Crawlers;Videos},
+  doi={10.1109/MICC.2017.8311752}}

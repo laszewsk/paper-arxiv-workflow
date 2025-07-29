@@ -1,0 +1,67 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experiment Execution Templates}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:templates}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiment Execution on High Performance Computers}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In general, users on HPC platforms operate in a computing environment with fixed computational resources and storage which. This strongly influences the types of experiments that are executed on these platforms which are generally characterized by inelastic workloads with pre-defined execution.
+
+In particular, users often operate within fixed size allocations (e.g. users have N node-hours with a pre-specified end date). Executing experiments on traditional HPC platforms is characterized by submitting batch jobs to the workload manager (e.g. SLURM or PBS). Additionally, because the amount of work is primarily static, large amounts of resources are allocated for long blocks of time (hours, days, or weeks). Long-running tasks on login nodes are generally discouraged although more recent HPC platforms include the concept of `workflow' nodes that can be used to deploy long-running jobs. This leads to experiment execution following pipeline-like workflows with each batch job submitting a new batch job to execute the next stage.
+
+HPC users also tend to assume that data is stored locally and in a persistent state. This allows experiment execution to use the file system as a way to swap data and/or store the state between submissions of batch jobs. Tape archives are used for long-term storage, however, by its nature the time to retrieve large amounts of data can be cumbersome.
+
+Comparatively speaking, most applications run on baremetal, i.e. outside of a container. The main advantage of containers, providing a portable environment, is less of an issue on HPC platforms which tend to retain the same hardware over the lifetime of the machine and whose software libraries are updated relatively infrequently.
+
+In many cases templates to formulate batch jobs are available from the organization hosting the HPC resource.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiment Execution on Hyperscaler Resources}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The increasing availability of resources in the cloud has led to an increased interest in deploying traditional HPC workloads on hyperscaled resources. These platforms have traditionally been optimized for web applications where elasticity of resources is paramount to adapt to dynamically changing workloads.  With the increasing use of the cloud for machine-learning tasks, hardware that was typically only available on HPC platforms (e.g. high-bandwidth, low-latency interconnects) are now commonplace. In contrast to traditional HPC, users have instant access to an (apparently) unlimited amount of computational resources and storage.
+
+The elasticity of resources leads to experiment execution paradigms that are driven by service-oriented architectures. This includes spawning multiple workers for each service that are ephemeral, often completing a small unit of work before ending. Applications are loosely coupled with communication and requests are handled through APIs instead of communicating directly with each other.  In contrast to bare-metal HPC, containers are a fundamental requirement to create customized environments that can be very quickly deployed and scaled onto a new set of resources. Jobs are usually measured on the order of minutes or seconds.
+
+Templates to use such resources are often provided as sample applications.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Federated Experiment Execution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Federated computing is a larger scale of computing that takes advantage of resources across multiple HPC platforms. This might either to perform computations that are larger than the resources available on a single HPC platform and/or to support applications with heterogeneous hardware requirements (e.g. a part of the application may be performant on GPU whereas another part might be better suited for many-core CPUs). 
+
+Workflow templaes such as provided in Cloudmesh to showcase multiple resource utilization can easily used and if needed adapted to serve federated experiment execution. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiment Execution on Clouds}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The CoGKits for Java and Python were the predecessors to Cloudmesh. While those tools focused on Grid computing interfaces for the various Grid toolkits. Cloudmesh provided the opportunity to shift its focus to services offered by cloud computing including Azure, AWS, Google, OpenStack clouds, and Chameleon Cloud via OpenStack. Here Cloudmesh focused on the creation of a very simple mechanism to start compute resources uniformly on the various clouds while providing templates that offer similar capabilities across them. As such workflows could be created that allowed switching easily between virtual machines. This is achieved by the Cloudmesh command line and command shell that prior to any other tool allowed integrating and switching between clouds easily. Thus, to start a VM on AWS, and then one on Azure one could simply say
+
+\begin{verbatim}
+  cms set cloud=aws
+  cms vm start
+  cms set cloud=azures
+  cms vm start
+  cms vm start --cloud=google
+\end{verbatim}
+
+Build-in defaults can be aligned so that the virtual machines operating on the various clouds are similar.
+Cloudmesh was the first tool that promoted a setup of cloud credentials in YAML files that were used to start ``templated'' virtual machines with default parameters provided by these templates. Only later were similar capabilities integrated in OpenStack. Thus, we can support cloud-based workflows
+
+\begin{itemize}
+    \item on one or multiple clouds
+    \item cloud agnostic workflows
+    \item adding easily new clouds into the workflows by integrating access points
+    \item allowing the integration of new clouds and their virtual machine access protocols
+\end{itemize}
+
+As clouds have recently also integrated containers and serverless computing we have prototyped the ability to stand up Kubernetes clusters (in AWS for example). As setting up such clusters is a task that is beyond the capabilities of scientists we prototyped an easy way to set them up including default security and network capabilities. The integration into Cloudmesh is conducted through the Cloudmesh plugin mechanism that ads dynamically this capability with a simple pip install.
+
+Most recently a shift in scientific computing has taken place that emphasizes the use of GPU compute resources. For this reason, AWS has added the ability to bootstrap in the cloud parallel clusters including their control through SLURM. Obviously, this could also be leveraged by a scientist who may not have a supercomputer at their facility or wants to conduct an HPC workload in the cloud. However, the configuration and setup is something most scientists do not want to be bothered with. Their goal is the access to the compute resources. Our cloud cluster plugin to Cloudmesh therefore contains the ability to deploy a cloud cluster with or without GPUs, as well as the size of the working node with the help of a single command to which we specify such things as the name of the cluster, how many nodes, and if and which GPUs should be used. Obviously, that can all be configured through AWS cloud formation, however, the setup and the configuration parameters are too complex to just support this general workflow case. Hence, we have provided a simplified YAML configuration file that can also be specified on the command line and allows reasonable flexibility. One such flexibility is to define multiple clusters that may be busy working on multiple things. It is to be noted that the setup of such cluster costs a significant time (such as 15 minutes) but this is time in contrast to the expected runtimes conducted on such clusters. It also provides a meaningful estimation on when such clusters may be used. For sure, they should not be used by a single user with only a few seconds compute time.  The experiment executions as part of the scientific discovery workflow should be much larger.
+

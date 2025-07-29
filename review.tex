@@ -1,0 +1,603 @@
+# REVIEW 1
+
+Independent review report submitted: 12 Nov 2024
+Interactive review activated: 07 Feb 2025
+
+Initial recommendation to the Editor: The manuscript should be rejected
+
+## Note to the authors:
+
+This is a fine idea for a paper with leading experts in the field. Each has deep experience that makes them a voice to be listened to. However, the way it is written, most importantly the self-citation only rather than teaching about the field in general, serves as an h-index builder rather than adding a new summary of the topic.
+
+The requirements generated in section 3 should offer a framework that the rest of the paper is evaluated through or these examples are demonstrations of how these ideas are applied. This connection is completely missing. This could be a major revision, but it is really a complete rewrite starting at the concept level again, but thinking about teaching about the topic rather than just showcasing all of the authors' own work.
+
+## EVALUATION
+
+While it is true there has been too much work to cite for this paper, citing only the author's own work, and not all of the authors, is too self serving. It should focus on what is the most important work with representative examples from the literature. Use the related work as an opportunity to summarize the field rather than the authors' work.
+
+## Tier - Capacity vs Capability
+
+Capacity-Tier-0 is a Capability Tier focused on things that require the most extreme scale to extend capability from the previous generation. Capacity-Tier-1 are also Capability machines most of the time. The rest are capacity.
+
+    RESOLVED: We removed the term capacity and capability to just use the term Ter as that is sufficient for the discussion here. We also corrected the use of the word capacity, where one was wrongly using capability
+
+## Section 3.1
+
+The section 3.1 summary does not feel right. Some of these, such as the Minimal Support for Access isn't a hardware piece, but part of the setup infrastructure. Reading this should talk about things like network requirements, GPUs (or not), and other actual hardware rather than the software on top. Otherwise, it should be renamed from hardware workflow requirements. Perhaps, Infrastructure Requirements?
+
+    RESOLVED: We have Reorgaized the requirements to only focus on those that are essentialwhile at the same time reducing some redundancy. We have renamed the Hardware Requirements section into Compute System Requirements.
+
+## 3.2
+
+Section 3.2. If there is a desire for reproducibility, the application users, with the GUI, needs some way to record and replay what they do. Further, this is not really talking about workflows, but that there are a lot of different people required to run a workflow. The implications are not working for this either. These do not boil down to what people need to do nor what workflows need from people. It is a mix of people and portability (reproducibility).
+
+    RESOLVED: Various Users have been identified with some of their unique needs.
+    We explicutly added the term worklow in this section to remind the reader that we focus mainly on experiment workflow related tasks for each user community. The section does not provide a comprehensive list beyond those that we observed in our use cases.
+
+## 3.3
+
+Section 3.3 misses a key idea that many workflows loop until a fixed condition. Others loop until a data condition is reached. These latter workflow types cannot be represented as a DAG as they become loops with conditionals.
+
+    RESOLVED: From experience with our uses it is easier to formulate itterations with termination conditions then DAG with conditionals during the specification phase. We clarified this in the paper
+
+line 452 unresolved citation
+
+    RESOLVED: added
+
+## 3.3.1
+
+Section 3.3.1 says you've had problems with software licenses. Other than saying you had redistribution problems, it doesn't qualify what a permissive license would be. For example, what parts of the licenses made them fail? The 200 person maximum for free use license isn't a standard open source or close to open source license. This also mixes money with licenses. This does not lay out a problem and then solve it.
+
+    RESOLVED: we have augmented the license explanation while documenting concrete examples with Redis that does not allow us to distribute precompiled versions and a source installation is complicated, and mongoDB that changed its license so redistribution in commercialized versions is requiring a license. 
+
+## 3.4
+
+Section 3.4 is a policy problem. Mapping a workflow into an environment needs to take into account policy, such as runtime maximum. That is what you are saying.
+
+    RESOLVED: We have made this now more clear
+
+## 3.5
+
+Section 3.5 is also a policy problem, but the most important security problem isn't mentioned. Hard-coding credentials in a workflow needs to be abstracted out such that the credentials are not sent with the workflow and that someone else can insert their own credentials appropriately and easily.
+
+    RESOLVED: We added this point as both systems do not encourage to hard-code credentials, they are kept separate from the workflows.
+
+## 3.6
+
+Section 3.6 doesn't mention FAIR. If there is any place in such a paper that should mention FAIR, it is a data management section.
+
+    RESOLVED: FAIR has been moved to the Data Management section. 
+
+## 3.7
+
+Section 3.7. OSMI is not in the same class as hardware or user requirements. It is something that should be a result of those other sub-sections. It should be the result of the benchmark carpentry to show that it meets all of these criteria and used the carpentry process and meets those goals.
+
+    RESOLVED: We moved OSMI into its own section under a new section Use Cases
+
+## 3.8
+
+Section 3.8. FAIR does not mean freely available. It means that the intended audience can find and re-use the data. FAIR completely and fully applies to data held privately within an organization.
+
+    RESOLVED: We have verified that all mentioning of FAIR are related to data products. We removed one partial sentence that may have given the impression that FAIR means freely available.
+
+## 4.1
+
+Section 4.1 should mention submitting a series of dependent jobs to make a workflow complete to work around time limitations, for example. Integration tasks are generated as part of the deployment process to mitigate the effects of these decompositions.
+
+    RESOLVED: this has been added in the Cloudmesh section 
+
+## 4.2
+
+Section 4.2-4.4 should talk about how these requirements you generated are mapped onto the hyperscaler resources and what the challenges are for that.
+
+    RESOLVED: We added that we will address such issues in a future paper.
+
+## 5-7
+
+Sections 5-7 do not tie these tools back to the requirements and show that they meet the standards developed.
+
+    RESOLVED: Based on the reviewers' feedback, we have significantly rewritten this section to focus on comparing and contrasting the two tools. First, we pared down the description of each one individually to provide minimum examples of the user experience. Second, we include both a table of features and the summary of the requirements and how they map onto. Third, we now focus this on a discussion about how select features/characteristics are similar or differ and discuss why.
+
+## summary
+
+Overall, this paper does not work. The related work is self-citation, the requirements generation sections are muddled and do not generate a crisp requirements set and then that set is not used for the rest of the paper. These things combined say that the paper needs to be rewritten to bring it up to a rigorous, academic work. It does not need a strong research contribution as it is not claiming one. Instead, it should show that it is a strong educational resource from the enormous experience the authors all have. They are all leaders in the field and should use that stature to teach rather than summarize; synthesize rather than list.
+
+
+# REVIEW 2
+
+Initial recommendation to the Editor: Major revision is required
+
+# EVALUATION
+ 
+The paper describes the authors' experience with developing HPC benchmark workflows and supporting tools.
+
+Strengths:
++ The work targets an important problem.
++ Two software systems to address the requirements of supporting scientific and benchmarking workflows on HPC systems are described.
+
+
+## Related work
+
+- No discussion of other related work. The related work section only covers the work RESOLVED by the authors. This is not suitable for a research paper. The authors should revise the related work section to include a discussion of work RESOLVED by other groups and how your work differs. It would also be more useful for readers if the related work section were organized into "challenges" and how each challenge was addressed or targeted by prior work, instead of presenting each co-author's previous works.
+
+    RESOLVED: We have removed this related research section, as to not gove the impression we only cite our own papers, yet we have 30 years of experience in this field which resulted in a large number of publications that structured workflow related activities in a unique Figure. We also deleted that Figure for also this reason as not to imply self citations. 
+
+    If the reviewer or editor find however its is better to include it we can add it back.
+
+    Instead we have written a complete new related research section while unfortunately not citing our own work to not give the impression we want to do self citations.
+
+## add AI workflows
+
+- Most of the requirements presented in Section 3 (subsections 3.1-3.6) are fairly well-known requirements and challenges in the HPC community and have been discussed in many publications. Hence, subsections 3.1-3.6 do not contribute much in terms of new insights. Instead, a more in-depth description and discussion of emerging workflow trends (such as digital twins, AI applications, and in situ, streaming, interactive analysis of extremely large datasets) would be more interesting and valuable contributions.
+
+    RESOLVED: We have added such requirements in two locations in the paper. Especially we added a new related research section addressing the new challenges. Both systems we present here have originally not been designed to address this cases, although they could.
+
+## templates vs technical description
+
+- Experiment execution templates and experiment executors (Sections 4 and 5) read more like a technical documentation of Cloudmesh and SmartSim. Description and illustration of workflow templates for emerging science workflows and a more in-depth evaluation of Cloudmesh and SmartSim in the context of such workflow templates would be more useful.
+
+    RESOLVED: Based on the reviewers' feedback, we have significantly rewritten this section to focus on comparing and contrasting the two tools. First, we pared down the description of each one individually to provide minimum examples of the user experience. Second, we include both a table of features and the summary of the requirements and how they map onto. Third, we now focus this on a discussion about how select features/characteristics are similar or differ and discuss why.
+
+
+## Proofread
+
+The manuscript should be proofread carefully and edited. There are missing references (e.g. line 778: have employed JSON, YAML, and the Hydra framework [? ]) and grammar/incomplete sentence errors (e.g. lines 629-630: "... with fixed computational resources and storage which. This strongly influences.." and line 637: ".. nodes that can be used to deploy long-running. This leads to..").
+
+    RESOLVED: The paper was proofred by 3 native english speakers. We hope that if any outstanding issues arrise, these can be resolved with the journal production team.
+
+
+# REVIEW 4
+
+
+Initial recommendation to the Editor: Major revision is required
+
+## EVALUATION
+
+## cite approval software
+
+I participated in the design, build, and delivery of the CORAL Summit and Sierra supercomputers. During delivery we developed a tool like Cloudmesh and SmartSim to collect benchmark data and results during delivery. This tool allowed us to better utilize our limited time on Summit and Sierra during acceptance and to tune all the required CORAL benchmarks. We would not have passed acceptance on schedule without this tool. We are now using a similar tool to benchmark AI accelerators against various AI workloads.
+
+    RESOLVE: We have cited such software in the related research section
+
+
+## proofrea}
+
+Unfortunately, I found this paper difficult to read and understand due to its organization and the lack of proofreading by the authors. 
+
+    RESOLVED: We have restructured the paper, and replaced the previous related research section with a new one
+
+    RESOLVED: The paper was proofred by 3 native english speakers. We hope that if any outstanding issues arrise, these can be resolved with the journal production team.
+
+
+
+## PDF with line by line changes
+
+Below I suggest organizational changes. The attached PDF contains other suggestions by line number(s). 
+
+    RESOLVED: All comments in the PDF document have been resolved. DUe to the reorganization they are no longer necessarily in the same line as indicated in the PDF by the reviewer. 
+
+## Reorganization
+
+A paper like this would be of great interest to the journal readers, and I hope the authors can revise the paper to make it more readable and understandable.
+
+    RESOLVED: We have reorgainzed the paper and created a new related research section that was added according to suggestion before the conclusion. The previous related research section which we still find useful has been removed. 
+
+## move some sections first
+
+Right now, the paper is organized in the following sections: introduction, related work, workflow requirements, experiment execution templates, experiment executors, summary, conclusion. In my opinion, the workflow requirements and experiment execution sections are the most interesting because they explain the considerable collective experience and what we can learn from these experiences. These sections should be up front even ahead of the related work section. 
+
+    RESOLVED: We have resolved this duplication while reorganizing the paper and making a single requirements section with selected requirements that we found most important. 
+    
+    
+## Move related work later
+
+The related work section can be placed at the back. After explaining the requirements, the related work section could even be condensed to a table like Table 3. Table 3 shows how Cloudmesh and SmartSim address some of the requirements. 
+
+    RESOLVED: We have moved the related research section to the end. However, one other reviewer commented to remove our related research section, so we did so in order to meet the review requirements. Instead we have written a complete new related research section that does not include a summary of our own related research in order to prevent that the impression is given to attempt to self cite or to ignore other peoples work.
+
+    SUGGESTION WITH FEEDBACK NEEDED: However, We are happy to reintroduce our previous related research section focusing on the contributions of the authors in the general field of workflows. As we removed the section we also deleted the Figure classifying the many workflow related aspects we came in contact with over the last 30 years. We are happy to discuss with the editor if this section should be added again and the figure be included. At this time we did not. We believe this section would contribute additional value to the paper. But we do not have to include it if not desired.
+
+## focus on one requirements section
+
+I found the separation of the workflow requirements and experiment execution templates sections to be confusing. Experiment execution templates address environment dependencies which are requirements.
+
+    RESOLVED: we merged the two sections
+
+## cloudmesh and smartsim
+
+The experiment executors section shoul
+example of this is the beginning of Section 5.2 (Cloudmesh). The section starts with an explanation of the power of HPC systems and the complex applications these systems support. Readers are already well aware of the power of HPC systems and the complex applications these systems support. I recommend condensing the descriptions of Cloudmesh and SmartSim and focusing on the comparison which is not found until the summary section. In fact, I recommend merging the execution executors and summary sections. For more details about Cloudmesh and SmartSim, readers can look up the documentation.
+    
+    RESOLVE: Based on the reviewers' feedback, we have significantly rewritten this section to focus on comparing and contrasting the two tools. First, we pared down the description of each one individually to provide minimum examples of the user experience. Second, we include both a table of features and the summary of the requirements and how they map onto. Third, we now focus this on a discussion about how select features/characteristics are similar or differ and discuss why.
+
+## Future work
+
+Finally, the conclusion section speculates on future work, but I would like to hear more about the “ideal” experiment executor. For example, what will the next iterations of Cloudmesh and SmartSim provide?
+
+    RESOLVED: We added that our future work should include combining both frameworks
+
+## Other suggestions by line number(s):
+
+• 45-48 Sentence is difficult to parse and I am not sure what point you are trying to make.
+Are you trying to make the point that using popular frameworks are insufficent to run
+scientific benchmarks across HPC systems?
+
+    RESOLVED: These systems present a challange to the next generation and are often to complex to install manage or learn about. 
+
+• 57 “Hence they…” → “Hence, they…”
+
+    RESOLVED
+
+• 60-61 “independently” twice is redundant
+
+    RESOLVED
+
+• 63 Be consistent with the capitalization of “Cloudmesh”. From the Cloudmesh
+documentation, it looks like “Cloudmesh” should be capitalized. This is throughout the
+paper.
+
+    RESOLVED, we use now the spelling "Cloudmesh" as recommended by the reviewer
+
+• 66 What is “cloudmask”? Is there a reference to this?
+
+    RESOLVED: In abstracts no citations are allowed. Citations are used in the paper.
+    
+• 80 “Hence in…” → “Hence, in…”
+
+    RESOLVED
+    
+• 86 “Energy consumption…” → “energy consumption…”
+
+    RESOLVED
+
+• 109 Need to clarify and define “experiment executions” and “workflow”. Used
+interchangeably in the paper which is confusing.
+
+    This has been clarified in the paper 
+
+    TODO: check the paper for consistency
+
+• 112 Suggest separating the sentences
+
+    RESOLVED: The sentence has been seperated and explenation has been improved.
+    
+• 115-117 Clarify the connection between “bottom-up approach” and “multiple experiment
+runs”
+
+    RESOLVED: This has been explained in more detail in the text
+
+• 118 “…where we from the application users learn what features…” → “…where we
+learn from the application users what features…”
+
+    RESOLVED 
+    
+• 123 “…which a distributed as part…” → “…which are distributed as part…”
+
+    RESOLVED
+
+• 131 "requirements” is redundant
+
+    RESOLVED
+    
+• 131 “a Section about the requirements…” → “a section about the requirements…”
+
+    RESOLVED
+
+• 134 Should explain what kind of “cloud”, eg, “public cloud”
+
+    RESOLVED: added (potentially public, private, or federated)
+    
+• 135 Is the “experiment executor” part of Cloudmesh? If so, you should use “Cloudmesh
+Experiment Executor”
+
+    RESOLVED: Added Cloudmesh
+
+• 140 “issue” is strange here. What issue are you talking about?
+
+    RESOLVED: added papers published as part of this special issue
+    
+• 161 What is “futures from Karajan”?
+
+    RESOLVED: Cited the earliest known work to me on promisses and futures from Friedman 1976
+    
+• 162 “As part of the CoG Kit van Laszewski…” → “As part of the CoG Kit, van
+Laszewski…”
+
+    RESOLVED 
+    
+• 170 “Google, and Azure, OpenStack…” → “Google, Azure, and OpenStack…”
+
+    RESOLVED
+    
+• 171 Spell out “e.g.” to be consistent
+
+    Christine - RESOLVED: Removed E.g.
+    I completely disagree but changed to "for example"
+    
+• 211 Confusing sentence. Can the framework or Frontier dynamically schedule system
+workloads? Also, “, predict power…” → “, predicts power…”
+
+    RESOLVED: used predicts. 
+    TODO. Wes, please clarify. 
+
+• 222-224 Split the sentences. “…scaled pipeline, each individual…” → “…scaled
+pipeline. Each individual…”
+
+    RESOLVED
+
+• 299 “Scientific Workflows must…” → “Scientific workflows must…”
+
+    RESOLVED
+
+• 312-313 “…heterogeneous loosely coupled resources.” → “heterogeneous, looselycoupled resources.”
+
+    RESOLVED: according to dictionary it is loosely coupled. E.g. two words
+
+• 317-318 Last sentence in the paragraph does not make sense
+
+    RESOLVED: Sentence has been corrected
+    
+• 323-327 If 100/% of the system are Linux based then why discuss Windows?
+
+    RESOLVED: An explenation is added that clients using cloudmesh can run on Windows.
+    
+• 329 (summary box) “…workflows utilizing the. The same is…” is missing words
+
+    RESOLVED, added "utilizing independence from underlying software deployments."
+
+• 346 “When using HPC systems users typically…” → “When using HPC systems, users
+typically…”
+
+    RESOLVED
+    
+• 361 “for large-scale HPC but it is…” → “for large-scale HPC, but it is…”
+
+    RESOLVED
+
+    Christine - RESOLVED, check other buts in paper
+    HELP needed from english speaker
+    CK - checked and reads well in this instance
+
+• 369 “…resources for experiments dedicated support…” → “…resource for experiments,
+dedicated support…”
+
+    RESOLVED, sentence split
+    
+• 378 “While for example, the application…” → “While, for example, the application…”
+Can even drop “for example”
+
+    RESOLVED: removed
+    
+• 379 “interface an application developer…” → “interface, an application developer…”
+
+    RESOLVED
+
+• 418 Missing reference?
+
+    RESOLVED
+    
+• 419-426 Should be one paragraph
+
+    RESOLVED: merged
+    
+• 428 “backbends we can flexibly…” → “back ends we can flexibly…”
+
+    RESOLVED
+
+• 430 Delete “for example”
+
+    RESOLVED
+    
+• 433 “API, for our work.” → “API for our work.”
+
+    RESOLVED
+    
+• 434 “Obviously we also can leverage…” → “Obviously, we can also leverage…”
+
+    RESOLVED
+    
+• 443 Where does Windows come from?
+
+    RESOLVED: Clarified why windows is important
+    
+• 445 “Unfortunately MongoDB changed in 2018 the license and…” → “Unfortunately, in
+2018 MongoDB changed its license and…”
+
+    RESOLVED
+
+• 452 Missing reference?
+
+    RESOLVED: removed italic
+
+• 453 “…nonpublic domain software that provides license” → “…nonpublic domain
+software with license”
+
+    RESOLVED
+
+• 454 “annonced” → “announced”
+
+    RESOLVED
+    
+• 457-460 Explain the reasons for using Apache and BSD licenses
+
+    RESOLVED:
+
+• 463 “This for example” → “This” In general, “for example” is used too much in the
+paper
+
+    RESOLVED: Reduced. number of "for example" to 8 in the entire paper
+
+• 467-476 These all seem to be “divide and conquer” examples. A single example would
+be sufficient to make your point. How do the frameworks support “divide and conquer
+
+    RESOLVED: I can not find just divide and conquer this is across heterogeneous machines and is a level above, so although divide and conquer each is RESOLVED on its separate system. Thus justifying a longer explanation
+
+    TODO. others please review
+
+• 475 “GPUS” → “GPUs”
+
+    RESOLVED
+    
+• 512-515 Why is splitVPN a security requirement? As the paper states, it was just an
+obstacle that had to be overcome
+
+    RESOLVED: Added explanation
+    
+• 520 What are the storage requirements? Are objects, files, and/or blocks required? How
+much storage is required?
+
+   RESOLVED: added the need for them
+    
+• 521 “In order to support data benchmark requirements we need to…” → “In order to
+support data benchmark requirements, we need to…”
+
+    RESOLVED:
+    
+• 522-523 Reword the sentence. Cannot understand the point you are trying to make. I
+believe you are talking about ephemeral data that is generated in training runs.
+
+    RESOLVED: clarified and reworded
+    
+• 582 Missing reference?
+
+    RESOLVED:
+    
+• 584 Missing reference?
+
+    RESOLVED:
+    
+• 601 “…the FAIR Principles call…” → “…the FAIR principles call…” Be consistent with
+your capitalization
+
+    RESOLVED
+
+• 603 “…the FAIR Principles varies…” → “…the FAIR principles varies…” Be consistent
+with your capitalization
+
+    RESOLVED
+    
+• 637 “…to deploy long-running.” → “…to deploy long-running jobs.”
+
+    RESOLVED
+    
+• 642 “…long-term storage, however by its nature…” → “…long-term storage, however,
+by its nature…”
+
+    RESOLVED
+
+• 644-647 Disagree. First, containers run on bare metal. They just include a software
+environment “snapshot”. While HPC systems do not change hardware and software
+frequently, containers help with portablity ACROSS HPC systems which is a big issue
+that I think Cloudmesh and SmartSim should address.
+
+    TODO
+
+• 692 “Thus we can support…” → “Thus, we can support…”
+
+    RESOLVED
+    TODO. Check Thus
+    CK - checked and all "thus" that need commans have them.
+
+• 712 “Hence we have provided…” → “Hence, we have provided…”
+
+    RESOLVED: All checked
+    
+• 715-718 What are the expected runtimes?
+
+    TODO. added explanation
+    
+• 732 “…features describing Smartsim and then…” → “…features describing SmartSim
+and then…”
+
+    RESOLVED 
+    
+• 816 Missing reference to figure?
+
+    RESOLVED
+    
+• 819-825 Not necessary to explain HPC systems
+
+    RESOLVED: The important part here is that this includes HPC systems at different locations. This is not a Grid, but simply multiple HPC systems. The work run on them is RESOLVED in collaboration or competition. To introduce this point we added a short pargraph. We belive its good to point out its not just HPC. It is HPC RESOLVED on multiple locations in cooperation or collaboration. This we believe it is needed
+    
+• 869-874 Should be one paragraph
+
+    RESOLVED:
+
+• 876 “…the compute coordinator (CC) is to…” → “…the Compute Coordinator (CC) is
+to…” Be consistent with your capitalization
+
+    RESOLVED
+    
+• 877 “…LSF, SLURm, and” → “…LSF, SLURM, and”
+
+    RESOLVED
+    
+• 881 Delete “for example”
+
+    RESOLVED:
+    
+• 894 What is meant by “where it results from”?
+
+    RESOLVED: fixed
+    
+• 911-913 Do not understand this sentence
+
+    RESOLVED
+    
+• 916 “provided in 9 a view…” → “provided in Figure 9 a view…”
+
+    RESOLVED 
+    
+• 929 Is “cloudmesh-ee framework” the same as EE? If so, then use EE instead of
+“cloudmesh-ee framework” throughout the paper
+
+    RESOLVED:
+
+    However when we refer to the name of the repositories we use the real name in github which is 
+
+    cloudmesh-ee
+    cloudmesh-cc
+    cloudmesh-vpn
+
+• 935 “Thus the EE supports…” → “Thus, EE supports…”
+
+    RESOLVED
+
+    TODO check other Thus
+    CK- checked all Thus and are okay
+    
+• 964 What is “gridsearches”?
+
+    RESOLVED
+
+• 970 Delete “for example”
+
+    RESOLVED
+
+• 971-973 Need commas after each item
+
+    RESOLVED
+    
+• 1014, 1022 Why are there quotes in the paragraph? If the paragraph is being quoted from
+documentation elsewhere, then the usual style is to indent the paragraph
+
+    RESOLVED: This depends on the journal, I thought frontiers would use ""
+    
+• 1045-1046 Is this redundant after explaining StopWatch.event above?
+
+    RESOLVED: Rewritten.
+    
+• 1060 Missing reference?
+
+    RESOLVED
+    
+• 1067 “Using cloudmesh create a fully…” → “Using the Cloudmesh create plugin, a
+fully
+
+    RESOLVED
+    
+• 1086 Is a detailed pricing discussion relevant? What does it contribute to the
+understanding of Cloudmesh and SmartSim?
+
+    RESOLVED: The table is of significance as one important aspect that cannot be ignored while running experiments on cloud hosted HPC services is the cost involved. In many cases the researchers have very limited budgets to conduct experiments and may not afford an in-house HPC cluster. 
+    We added a new table listing examples from MLPerf benchmark executions and estimated the cost of running such experiments in cloud.

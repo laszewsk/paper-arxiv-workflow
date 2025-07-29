@@ -1,0 +1,64 @@
+\begin{table}[htbp]
+\caption{Comparison between the workflow-related features of SmartSim and Cloudmesh}
+\label{tab:features}
+\label
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|l|l|}
+\hline
+\bf Feature &  \makecell{\bf Cloudmesh \\ \bf Experiment Executor and \\\bf Compute Coordinator} &  \bf SmartSim \\
+\hline
+\multicolumn{3}{|l|}{\bf\em Scheduler}\\
+\hline
+Queue & SLURM, LSF, SSH, others possible &  SLURM, PBS, LSF, SGE \\
+Batch Submission & \YES & \YES \\
+Within Allocation & \YES & \YES \\
+DAGs  & \YES  & \YES \\
+Inferencing Capabilities & \NO & \YES \\
+In-memory data exchange & \NO & \YES \\
+Experiment/Ensemble & \YES & \YES \\
+\hline
+\multicolumn{3}{|l|}{\bf\em Interface}\\
+\hline
+Python API & \YES & \YES \\
+Command line & \YES & \NO \\
+Command shell & \YES & \NO \\
+GUI  & (\YES) & \YES \\
+\hline
+\multicolumn{3}{|l|}{\bf\em Parameters}\\
+\hline
+Native YAML configuration & \YES & \NO  \\
+multi-value YAML & \YES & \NO \\
+evaluative YAML ($f(\vec{x}$)) & \YES & \NO \\
+Gridsearch & \YES & \YES \\
+Customizable Strategies & \YES & \YES \\
+\hline
+\multicolumn{3}{|l|}{\bf\em Federation}\\
+\hline
+SSH & \YES & \NO \\
+Split VPN support & \YES & \NO \\
+Build in parallel multi resource experiments & \YES & \NO \\
+Combine results by multiple users & \YES & \NO \\
+Combine results from multiple resources & \YES & \NO \\
+\hline
+\multicolumn{3}{|l|}{\bf\em Expandable}\\
+\hline
+Plugin Manager & \YES & \NO \\
+\hline
+\multicolumn{3}{|l|}{\bf\em Distribution}\\
+\hline
+only pip & \YES & Without Redis \\
+pip with compile & N/A & With Redis \\
+Container & \YES & \YES \\
+Singularity & \YES & \YES \\
+Docker & \YES & \YES \\
+Licence  & Apache 2.0 & BSD-2-Clause license \\
+\hline
+\multicolumn{3}{|l|}{\bf\em Other Deployments}\\
+\hline
+AWS Parallel Cluster & \YES & \NO \\ 
+AWS Kubernetes  & in progress & \NO \\
+\hline
+\end{tabular}
+}
+\end{table}

@@ -1,0 +1,126 @@
+
+\begin{table}[htb]
+
+  \caption{Training and validation with time based hyperparameters
+    sorted by NNSE accuracy. The table includes the best two two
+    values highlighted in the training and validation results to
+    showcase the the the accuracy of the validation. In the validation
+    we see that the best value for training is in rank four for the
+    validation. The number of Epochs for this experiment is 2.
+    26 is half of 52 and so 26 2-week intervals is a year.}
+  \label{tab:training-2}
+
+  \renewcommand{\arraystretch}{1.2}
+\begin{center}
+\begin{tabular}{|r|rl||rl|}
+  \hline
+{\bf Rank} & \multicolumn{2}{c||}{\bfseries Training} & \multicolumn{2}{c|}{\bfseries Validation}  \\
+     &   {\bf NNSE} & {\bf Hyperparameters} & {\bf NNSE} & {\bf Hyperparameters} \\
+\hline
+1 & \color{red} 0.191300 & \color{red} Year Back & \color{blue} 0.195200 & \color{blue} 6M 2wk+7AVG} \\
+2 & 0.192700 & \color{blue} 6M 2wk+7AVG & \color{teal} 0.201000 & \color{teal} 6 Months Back \\
+3 & 0.197000 & 6M 2wk+13AVG & 0.201600 & 6M 2wk+13AVG \\
+4 & \color{teal} 0.201600 & \color{teal} 6 Months Back & \color{red} 0.204500 & \color{red} Year Back \\
+5 & 0.232600 & 1Y 2wk+13AVG & 0.219700 & 3 Months Back \\
+6 & 0.233000 & 3 Months Back & 0.228900 & 3M 2wk+7AVG \\
+7 & 0.235800 & 1Y 2wk+7AVG & 0.238200 & 1Y 2wk+13AVG \\
+8 & 0.243000 & 3M 2wk+7AVG & 0.249500 & 1Y 2wk+7AVG \\
+9 & 0.251600 & 1Y 2wk+26AVG & 0.264400 & 6M 2wk+26AVG \\
+10 & 0.251700 & 6M 2wk+26AVG & 0.266200 & 3M 2wk+13AVG \\
+11 & 0.278800 & 3M 2wk+13AVG & 0.270300 & 1Y 2wk+26AVG \\
+12 & 0.302500 & 3M 2wk+26AVG & 0.295800 & 3M 2wk+26AVG \\
+13 & 0.405600 & Now 2wk+7AVG & 0.379700 & Now 2wk+7AVG \\
+14 & 0.429900 & Now 2wk+13AVG & 0.412700 & Now 2wk+13AVG \\
+15 & 0.506800 & 2 weeks Now & 0.470100 & 2 weeks Now \\
+16 & 0.521800 & Now 2wk+26AVG & 0.502300 & Now 2wk+26AVG \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{table}
+
+\begin{table}[htb]
+
+  \caption{Training and validation with time based hyperparameters
+    sorted by NNSE accuracy. The table includes the best two two
+    values highlighted in the training and validation results to
+    showcase the the the accuracy of the validation. In the validation
+    we see that the best value for training is in rank four for the
+    validation. The number of Epochs for this experiment is 30.
+  }
+  \label{tab:training-30}
+
+  \renewcommand{\arraystretch}{1.2}
+\begin{center}
+\begin{tabular}{|r|rl||rl|}
+\hline
+{\bf Rank} &
+\multicolumn{2}{c||}{\bfseries Training} &
+\multicolumn{2}{c|}{\bfseries Validation} \\
+     {\bf NNSE} &
+     {\bf Hyperparameters} &
+     {\bf NNSE} &
+     {\bf Hyperparameters} \\
+\hline
+ 1 & \color{red} 0.047600 & \color{red} Year Back & \color{red} 0.050500 & \color{red} Year Back \\
+ 2 & \color{blue} 0.069500 & \color{blue} 6 Months Back & \color{blue} 0.070300 & \color{blue} 6 Months Back \\
+ 3 & 0.082900 & 1Y 2wk+7AVG & 0.076500 & 1Y 2wk+7AVG \\
+ 4 & 0.089700 & 3 Months Back & 0.090400 & 3 Months Back \\
+ 5 & 0.171600 & 1Y 2wk+13AVG & 0.153600 & 1Y 2wk+13AVG \\
+ 6 & 0.208100 & 6M 2wk+7AVG & 0.186200 & 6M 2wk+7AVG \\
+ 7 & 0.319600 & 1Y 2wk+26AVG & 0.290100 & 1Y 2wk+26AVG \\
+ 8 & 0.330300 & 3M 2wk+7AVG & 0.291900 & 3M 2wk+7AVG \\
+ 9 & 0.341800 & 6M 2wk+13AVG & 0.302800 & 6M 2wk+13AVG \\
+10 & 0.394600 & 3M 2wk+13AVG & 0.343400 & 3M 2wk+13AVG \\
+11 & 0.418900 & 6M 2wk+26AVG & 0.374500 & 6M 2wk+26AVG \\
+12 & 0.450800 & 3M 2wk+26AVG & 0.384100 & 2 weeks Now \\
+13 & 0.488800 & 2 weeks Now & 0.398900 & 3M 2wk+26AVG \\
+14 & 0.517900 & Now 2wk+7AVG & 0.409300 & Now 2wk+7AVG \\
+15 & 0.559200 & Now 2wk+13AVG & 0.453000 & Now 2wk+13AVG \\
+16 & 0.586000 & Now 2wk+26AVG & 0.484100 & Now 2wk+26AVG \\
+\hline
+\end{tabular}
+
+\end{center}
+\end{table}
+
+
+\begin{table}[htb]
+
+  \caption{Training and validation with time based hyperparameters
+    sorted by NNSE accuracy. The table includes the best two two
+    values highlighted in the training and validation results to
+    showcase the the the accuracy of the validation. In the validation
+    we see that the best value for training is in rank four for the
+    validation. The number of Epochs for this experiment is 70.}
+  \label{tab:training-70}
+
+  \renewcommand{\arraystretch}{1.2}
+\begin{center}
+\begin{tabular}{|r|rl||rl|}
+  \hline
+{\bf Rank} & \multicolumn{2}{c||}{\bfseries Training} & \multicolumn{2}{c|}{\bfseries Validation} \\
+     &   {\bf NNSE} & {\bf Hyperparameters} & {\bf NNSE} & {\bf Hyperparameters} \\
+              \hline
+ 1 & \color{red} 0.067400 & \color{red} 3 Months Back & \color{red}0.069800 & \color{red} 3 Months Back \\
+ 2 & \color{blue} 0.073500 & \color{blue} Year Back & \color{blue} 0.071200 & \color{blue} Year Back \\
+ 3 & 0.083100 & 1Y 2wk+7AVG & 0.084300 & 1Y 2wk+7AVG \\
+ 4 & 0.105300 & 6 Months Back & 0.102200 & 6 Months Back \\
+ 5 & 0.138400 & 6M 2wk+7AVG & 0.133700 & 6M 2wk+7AVG \\
+ 6 & 0.153500 & 1Y 2wk+13AVG & 0.142800 & 1Y 2wk+13AVG \\
+ 7 & 0.252100 & 6M 2wk+13AVG & 0.235400 & 6M 2wk+13AVG \\
+ 8 & 0.295900 & 6M 2wk+26AVG & 0.269700 & 6M 2wk+26AVG \\
+ 9 & 0.318800 & 1Y 2wk+26AVG & 0.291100 & 3M 2wk+7AVG \\
+10 & 0.335400 & 3M 2wk+7AVG & 0.293500 & 1Y 2wk+26AVG \\
+11 & 0.385200 & 3M 2wk+13AVG & 0.333000 & 3M 2wk+13AVG \\
+12 & 0.421000 & 3M 2wk+26AVG & 0.344500 & 2 weeks Now \\
+13 & 0.425700 & 2 weeks Now & 0.359400 & Now 2wk+7AVG \\
+14 & 0.441300 & Now 2wk+7AVG & 0.370700 & 3M 2wk+26AVG \\
+15 & 0.465800 & Now 2wk+13AVG & 0.385800 & Now 2wk+13AVG \\
+16 & 0.490400 & Now 2wk+26AVG & 0.412500 & Now 2wk+26AVG \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{table}
+

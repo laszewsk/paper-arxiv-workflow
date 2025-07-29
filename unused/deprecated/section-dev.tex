@@ -1,0 +1,58 @@
+\subsection{Insights into Development from the Earthquake Code}
+
+The original code was developed with the goal to create a DL method
+called {\em tevelop} to apply special time-series evolution for
+multiple applications including earthquake, hydrology, and COVID
+prediction. The code was presented in a large Python Jupyter notebook
+on Google Collab.  Due to the integration of multiple applications, the
+code was difficult to understand and maintain. For this reason, the
+total number of lines of 13500 was reduced by more than 2400 lines
+when the hydrology and the covid code were removed.  However, at the
+same time, we restructured the code and reached a final length of about
+11100 lines of code.  The original code contained all hyperparameters
+and needed to be changed every time a hyperparameter was modified.
+The code included all definitions of variables and hyperparameters in
+the code itself.
+
+As we can see from this code has some major issues that future
+versions ought to address. First, the code includes every aspect that
+is not covered by TensorFlow and also contains a customized version of
+TFT. Second, due to this the code is very large, and manipulating and
+editing the code is time-consuming and error-prone. Third, as many
+code-related parameters are managed still in the code running the
+same code with various parameters becomes cumbersome. In fact, multiple
+copies of the code need to be maintained when new parameters are
+chosen, instead of making such parameters part of a configuration
+file. Hence we started moving towards the simplification of the code
+by introducing the concept of libraries that can be pip installed, as
+well as adding gradually more parameters to configuration files that
+are used by the program.
+
+The advantage of using a notebook is that it can be augmented with lots
+of graphs that give in-situ updates on the progress and its measured
+accuracy. It is infeasible for students to use and replicate the run
+of this notebook as the runtime can be up to two days. Students for
+sure have to use their computers for other things and need to be able
+to use them on the go. Often HPC venters provide interactive jobs in
+the batch queues, but also here this is not sufficient. Instead, we
+adapted to use jupyter notebooks in full batch mode by the HPC queuing
+system by generation a special batch script that internally uses
+papermill to execute the notebook in the background. Papermill, will
+also include all cells that have to be updated during runtime
+including graphics. The script we developed needed however to be run
+multiple times and with different hyperparameters such as the number of
+epochs, to give just one example. As the HPC system is a heterogeneous
+GPU system having access to A100, V100, P100, RTX2080 the choice of
+the GPU system must ba able to be configurable. Hence the batch script
+includes the ability to also read in the configuration file and adapt
+itself to the needed parameters. This is controlled by a sofisticated but
+simple batch job generator which we discuss in a later Section.
+
+
+
+%libraries for mlcommons benchmarking, cloudmesh
+%portable way to define data locations via config
+%experiment permutation over hyperparameters.
+%* repeated experiments
+%* separate evaluation and comparison of accuracy which was not in the original code.
+%* comparison of accuracy across different hyperparameter searches.

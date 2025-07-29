@@ -1,0 +1,88 @@
+In the following benchmarks a number of hyper parameters were used to
+determine the training data that derive accuracy values with the
+earthquake benchmark code.
+
+All time data is grouped into 2 week time periods.
+
+We distinguish the following abbreviations. The first term defines the
+start point and we used the values
+
+{\em Now} means the first training time period starts at the current
+date,
+
+2 weeks means the first training time period starts at 2 weeks before
+the current date,
+
+3M means the first training time period starts at 3 months before the
+current date,
+
+6M means the first training time period starts at 6 months before the
+current date,
+
+1Y means the first training time period starts at 1 year before the
+current date.
+
+The second parameter has two values 2wk+xAVG where x is a number. The
+first defines a 2 week time period denoted by 2wk. The second defines
+how many total time groups are put in the training data.
+
+In addition we also have the values
+
+3 Months Back means the first and only training time period starts at 3 months before the current date.
+
+Year Back means the first and only training time period starts at 1 year before the current date.
+
+2 weeks Now means the first and only training time period starts at the current date.
+
+\begin{description}
+\item {\bf Now 2wk+26AVG} -- 2 week training time periods starting at
+  the current date and ending either after 26 total time periods are
+  reached.
+\item {\bf Now 2wk+13AVG} -- 2 week training time periods starting at
+  the current date and ending either after 13 total time periods are
+  reached.
+\item {\bf Now 2wk+7AVG} -- 2 week training time periods starting at
+  the current date and ending either after 7 total time periods are
+  reached.
+\item {\bf 2 weeks Now} -- 2 week training time periods starting at
+  the current date and ending after 1 time period is reached.
+\item {\bf 3M 2wk+26AVG} -- 2 week training time periods starting at 3
+  months before the current date and ending either after 26 total time
+  periods are reached.
+\item {\bf 3M 2wk+13AVG} -- 2 week training time periods starting at 3
+  months before the current date and ending either after 13 total time
+  periods are reached.
+\item {\bf 3M 2wk+7AVG} -- 2 week training time periods starting at 3
+  months before the current date and ending either after 7 total time
+  periods are reached.
+\item {\bf 1Y 2wk+26AVG} -- 2 week training time periods starting at 1
+  year before the current date and ending either after 26 total time
+  periods are reached.
+\item {\bf 6M 2wk+26AVG} -- 2 week training time periods starting at 6
+  months before the current date and ending either after 26 total time
+  periods are reached.
+\item {\bf 6M 2wk+13AVG} -- 2 week training time periods starting at 6
+  months before the current date and ending either after 13 total time
+  periods are reached.
+\item {\bf 1Y 2wk+13AVG} -- 2 week training time periods starting at 1
+  year before the current date and ending either after 13 total time
+  periods are reached.
+\item {\bf 6M 2wk+7AVG} -- 2 week training time periods starting at 6
+  months before the current date and ending either after 7 total time
+  periods are reached.
+\item {\bf 6 Months Back} -- 2 week training time periods starting at
+  6 months before the current date and ending after 1 time period is
+  reached.
+\item {\bf 1Y 2wk+7AVG} -- 2 week training time periods starting at 1
+  year before the current date and ending either after 7 total time
+  periods are reached.
+\item {\bf Year Back} -- 2 week training time periods starting at 1
+  year before the current date and ending after 1 time period is
+  reached.
+\item {\bf 3 Months Back} -- 2 week training time periods starting at
+  3 months before the current date and ending after 1 time period is
+  reached.
+\end{description}
+
+
+

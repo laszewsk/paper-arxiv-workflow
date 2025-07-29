@@ -1,0 +1,100 @@
+\subsection{Provisioning Cloud Clusters with the Cloudmesh Plugin}
+\label{sec:cloudcluster}
+
+We report next on a new development we started over the last several months to contrast with the primarily on-premise focused cases described previously. In particular, this focuses on an increasingly common cost analysis: whether an HPC application would be more cost-effective to run in the cloud instead of an on-premise machine. We are providing some starting points for this discussion.
+
+A new plugin to Cloudmesh extends the high-level API and abstractions to provision a High Performance Computing  (HPC) cluster in the cloud. It currently utilizes AWS Parallel Computing Service (PCS) ~\citep{awspcs:online} as the supported computational backend. The plugin simplifies the infrastructure deployment of an HPC by creating an abstraction layer for the end user who intends to run their experiments on HPC resources in a cloud. It simplifies access, deployment, and management of the infrastructure in the cloud. Unfortunately, deploying a cluster with PCS is still too complex for many users. Hence, we developed a sophisticated but easy-to-use plugin for Cloudmesh called {\em create}, which as its name suggests, creates a cloud cluster. It provides the necessary automation to deploy clusters within minutes from the command line or via an API (a fully functional HPC cluster using AWS can be built in about 6 minutes).  
+
+In AWS PCS, a cluster consists of compute nodes configured by EC2 instances. The cluster is managed by a controller that provides batch processing to its users via SLURM (Simple Linux Utility for Resource Management).  The total cost ($H$) of running a PCS cluster in AWS can be calculated using Equation \ref{eq:aws},
+
+\begin{equation}
+ H = C + (N * (M + I)) \label{eq:aws}
+\end{equation}
+
+where 
+$C$ is the controller fee per hour, 
+$N$ is the number of nodes, 
+$M$ is a fixed cost called the node management fee which is charged for each node per hour, and
+$I$ is the node cost per hour for each node stemming from the instance type used.
+
+The advantage of using a cloud is motivated by scaling hardware features to the exact count necessary by the application's computational needs with on-demand timing. Through auto-scaling based on workload, users can define a minimum and maximum number of nodes, as well as adding and deleting nodes on-demand when they are not needed.
+
+In many cases, researchers have very limited budgets to conduct experiments. For this reason, researchers tend to utilize freely available HPC clusters through project proposals in nationally or university-funded clusters. Cloud HPC provides an alternative cost structure following the pay-as-you-go model with the hope that the cost of executing the experiment is reasonably cheap.  Some suggest  \citep{munhoz_performance_2023} that cloud-based HPC clusters can be a more economical option for many users, particularly for those with fluctuating workloads or limited budgets. 
+
+A detailed pricing structure for PCS can be found at \citep{www-aws-pricing}. It is interesting to compare the cost of running a benchmark on an on-premise cluster versus running a benchmark on PCS which we highlight on some examples focusing on GPU usage. To obtain a better understanding, we have mapped out the pricing based on typical MLCommons benchmark with A100 GPUs in Table \ref{tab:aws-1}. Each node has 8 A100 GPUs. We find that the cost per GPU per hour is about \$4.18.
+
+
+To further quantify the cost, we compared benchmarks for DeepCAM and CosmoFlow run on a cluster with Nvidia GPUs \citep{mlperf-nvidia-benchmark} as reported by MLCommons and show the price for running them on similar clusters in the cloud with A100 GPUs in Table \ref{tab:aws-1}. From the MLPerf Training HPC Benchmarks \citep{mlcommonsBenchmarkMLPerf} and training policies documented in the GitHub repository \citep{mlperftrainingpolicies}, we are able to derive the cluster type as well as the runtime for repeated experiments. 
+
+
+\begin{table}[h]
+\caption{AWS PCS Pricing Information, examples for $n$ GPU (p4d.24xlarge) Nodes value as of Mar. 2025.
+p4d.24xlarge offers 96 CPUs, 1TB memory, and 8 NVIDIA A100-SXM4-80GB GPUs per node.}
+\label{tab:aws-1}
+\smallskip
+\resizebox{\columnwidth}{!}{%
+\centering
+{\small
+\begin{tabular}{|r||r|r|r|r|r|r|r|}
+ \hline
+ \makecell[t]{\bf Slurm \\ \bf Controller \\\bf Size} &
+ \makecell[t]{\bf Number of \\ \bf AWS Nodes } & 
+ \makecell[t]{\bf Number of \\ \bf GPUs} & 
+ \makecell[t]{\bf Node cost \\ \bf per node \\ \bf hour } &  
+ \makecell[t]{\bf Controller \\ \bf Fee per hour} & 
+ \makecell{\bf Node \\ \bf Management \\ \bf Fee per hour} & 
+ \makecell[t]{\bf Total Cost  \\ \bf per hour \\ } &
+ \makecell{ \bf Cost per GPU\\ \bf per hour \\ \bf (approx.)}
+ \\
+   & \makecell{$N$} & \makecell{~} & \makecell{$I$} & \makecell{$C$} & \makecell{$M$} & \makecell{$H = C + (N * (M + I))$} & \\
+ \hline
+ Small   & 64 & 512     & \$32.77 & \$0.60  & \$0.67 & \$2,140  & \$4.18 \\
+ Medium  & 128 & 1024   & \$32.77 & \$3.34  & \$0.67 & \$4,283  & \$4.18 \\
+ Large   & 256 & 2048   & \$32.77 & \$6.71  & \$0.67 & \$8,567  & \$4.18 \\
+ \hline
+\end{tabular}
+}
+}
+
+\caption{MLPerf Benchmarking Results from MLCommons using NVIDIA A100-SXM4-80GB (400W) GPU model \citep{mlcommonsBenchmarkMLPerf}}
+\smallskip
+\label{tab:aws-2}
+\resizebox{\columnwidth}{!}{%
+{\small
+\centering
+\begin{tabular}{|r||r|r|r|r|r|r|r|}
+ \hline
+ \makecell[t]{\bf System\_Configuration \\ \bf Name} & 
+ \makecell[t]{\bf Total \\ \bf Nodes} & 
+ \makecell[t]{\bf Total \\ \bf GPUs} & 
+ \makecell[t]{\bf Benchmark} & 
+ \makecell[t]{\bf Average Duration \\ \bf of execution \\ \bf in Minutes} &
+  \makecell[t]{\bf Number of \\ \bf Repeated\\ \bf Experiments} &
+ \makecell[t]{\bf Total Duration \\ \bf of execution \\ \bf in Minutes} &  
+ \makecell[t]{\bf Projected \\ \bf Total Cost \\ \bf on AWS for all\\ \bf Experiments} 
+ \\
+    
+ \hline
+ %dgxa100\_n16\_ngc21.09\_mxnet   & 16  & 128  & CosmoFlow & 25.78 & 10 & \$39,910 \\
+ dgxa100\_n64\_ngc21.09\_pytorch & 64  & 512  & DeepCAM & 2.65 &  5 & 13.25 & \$473 \\
+ dgxa100\_n128\_ngc21.09\_mxnet  & 128 & 1024  & CosmoFlow & 8.04 &  10 & 80.4 & \$5,740\\
+ dgxa100\_n256\_ngc21.09\_pytorch  & 256  & 2048  & DeepCAM & 1.67 &  5 & 8.35 & \$1,192\\ 
+ \hline
+\end{tabular}
+}}
+
+\bigskip
+\end{table}
+
+
+
+Although, Table \ref{tab:aws-1} provided prices per hour (AWS charges by minute), AWS offers also a long term charge for 1 year for \$5,098, or for 3 years for   
+ \$3,140 per hour. 
+ 
+As cloudmesh can easily provision such clusters, the expected costs must be communicated to the user as otherwise unexpected costs may occur. This can be achieved by adding in future an interactive question such as alerting the users of the overall cost, or by defining limits for cost when such a cluster is provisioned.
+
+Next, we list some advantages and disadvantages. Advantages include easy deployment no administrator costs, the Cluster can be updated to utilize new hardware once it is made available by the cloud provider, utilizing spot instances reduces cost, and a cluster is only needed when the demand arises. As for the disadvantages, it is essential to understand the cost model so as to not be charged unexpectedly, although deployment is easy users still have to know more than just the interface to a queuing system (this is simplified by cloudmesh), community on-premise clusters may be ``free'' once the scientific need has been approved, and community clusters have dedicated support staff helping to port scientific applications.
+
+In this paper, we have not answered the question if a cloud cluster is cheaper than an on-premise cluster. This we hope to address in a follow up paper. The included cost outline gives a pretty good understanding of what a typical cost arises when we identify the needs for selected MLCommons benchmarks.
+
+However, we note that the cost of computation is often not taken into consideration when running applications like benchmarks for traditional HPC platforms because the user seldom bears the cost directly. In contrast, the need to minimize the cost associated with developing and executing experiments in the cloud does add an additional requirement to what might be expected of experiment executors.

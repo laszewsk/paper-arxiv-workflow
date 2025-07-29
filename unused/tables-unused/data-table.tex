@@ -1,0 +1,28 @@
+\begin{comment}
+\begin{table}[htb]
+  \caption{File transfer performance of various file systems on Rivanna and personal computers.}
+  \label{tab:file-performance}
+  \begin{center}
+  {\footnotesize 
+  \begin{tabular}{|llrrrp{4.5cm}|}
+    \hline
+    Machine & File systems & \multicolumn{2}{l}{Bandwidth Performance} & Speedup & Description \\
+    \hline
+    \hline
+    Rivanna & \verb|/scratch/$USER  (sbatch)|     & 30.6 MiB/s & 32.1 MB/s  & 1.0 & shared scratch space, batch mode \\
+    Rivanna & \verb|/scratch/$USER (interactive)| & 33.2 MiB/s &  34.8 MB/s  & 1.1 & shared scratch space, interactive \\
+    Rivanna & \verb|/home/$USER|                    & 40.9 MiB/s & 42.9 MB/s  & 1.3 & users home directory \\
+    MacM1   & \verb|/| & 93.2MiB/s & 97.7MB/s & 3.0 & users homedir \\
+    Rivanna & \verb|/project/$PROJECTID |     & 100 MiB/s  & 105 MB/s  & 3.3 & project specific filesystem \\
+    Personal Computer  & \verb|c:| & 187 MiB/s  & 196 MB/s  & 6.1 &  file system on a personal computer \\
+    Rivanna & \verb|/tmp|                         & 271 MiB/s  & 285 MB/s  & 8.9 & temporary file system on a node \\
+    \hline
+    Special Node Rivanna & \verb|/localscratch|  &  384 MiB/s & 403 MB/s  & 12.6 & NVMe storage of the node\\
+    RAM disk Rivanna  & \verb|/dev/shm/*|      &             461 MiB/s & 483 MB/s  & 15.1 & simulated filesystem in a RAM disk\\
+    Personal Computer & \verb|/home/$USER| & 579 MiB/s & 607 MB/s &  18.9 & Sabrent 2TB NVMe\\
+    \hline                                             
+    \end{tabular}
+  }
+    \end{center}
+\end{table}
+\end{comment}

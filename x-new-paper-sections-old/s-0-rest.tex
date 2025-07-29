@@ -1,0 +1,58 @@
+
+VERIFICATION OF THE USEFULNESS OF TEMPLATES
+
+To verify this, we did a test where a group of graduate and undergraduate students struggled over six months to develop a reproducible FAIR-based experiment while just using batch scripts, while they could have chosen one of our workflow systems that specifically addresses this issue which a much more easy to use and powerful solution provided by the Cloudmesh experiment executor or SmartSim. In the case of the experiment executor, we showed that the same experiment workflow set up by the team of 4 students (including 2 graduate students) working on this for six months could be executed by a single undergraduate student in a matter of a day. Not only that, the results produced by the single student were reproducible and scientifically sound as they were verified independently.
+
+One of the most important lessons we obtained from it was that experiment workflows require a proper framework to be able to reproduce the experiment. This includes experiment parameters for the application and the infrastructure, as well as an easy-to-understand mechanism to record and catalog data products created by not only one but potentially many thousands or hundreds of thousands of experiments. This is based on our own experience when an experiment needed to be repeated to identify issues with the data, or to conduct quality or performance improvements as part of benchmarking the experiments. This also includes the fact that such experiments must be designed in a portable fashion so they can be executed potentially on different infrastructures for performance and even accuracy comparisons (in case different architectures are used).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Software Requirements}
+\label{sec:sw-requirements}
+
+
+\TODO{We should move this elsewhere In Figure \ref{F:graph-challanges}, we have already listed many of the topics that influence the software design and requirements. }
+
+\TODO{move this to cloudmesh:
+
+As we specifically target the combination of hyperparameters (or just parameters when not using AI) as well as introducing parameterized infrastructure we truly address experiment management through the combination of all these factors.
+This allows the the support of the experiment workflow including data pre-staging, computational calculations
+checkpointing/restoring, result recording, and backup.
+}
+
+\TODO{FAIR}
+
+\TODO{ possibly use this term
+}
+  * heterogeneous cross facility resources merging results into same structure the data ....
+}
+
+
+
+
+lincese cloumesh smartsim cahnges
+
+Cloudmesh initially used MongoDB to manage a cached version of its infrastructure. This, however, had early issues as the documentation and installation instructions for Windows at the time were insufficient and not well documented. Hence, we spent unnecessary time and wrote our own better installation workflow for it. Unfortunately, MongoDB changed its license in 2018, rendering it unsuitable for our purposes.  At this time, we completely rewrote Cloudmesh to use its own internal YAML database based on Python. This allowed 
+a much easier pip-only install and simplified the setup of Cloudmesh drastically. This was also the main issue brought forward by our users, ``eliminate MongoDB dependencies.'' Windows is still important to support as Cloudmesh contains components that are executed by the clients on their local machines. Often this includes Windows laptops.
+
+Recently SmartSim ran into a similar  problem as it could not distribute Redis on which it currently depends with a precompiled version including containers. Often Alternatives are not available till such license changes have been made and introduce considerable inconvenience to the existing dependent projects. Currently, an alternative to Redis would be KeyDB  \citep{keydb}. 
+
+However, as a lesson to support open contributions, it should be avoided to rely on nonpublic domain software with license restrictions. Even recently, it was announced that conda is no longer free to use for organizations with more than 200 employees, which essentially means any university and research lab, if not used in course curricula~\cite{anaconda}. As it is used often in AI workflows, now pathways have to be found. Luckily, Cloudmesh and SmartSim do not depend on conda. 
+
+In the case of Cloudmesh, we have chosen Apache 2.0 due to our good experience for over a decade with many software projects in universities and Department of Energy.
+SmartSim is distributed under the BSD-2-Clause license which is even more lenient.
+
+
+SPLIT VPN
+
+
+{\TODO  particular obstacle as several used their own VPN not allowing the use of multiple VPNs at the same time. We overcame this obstacle by using vpnc-scripts and implemented an easy-to-use API and command line tool based on OpenConnect while consulting with its developers. 
+}
+
+
+\TODO{ move to cloudmesh: To simplify our requirement we include here som of our rich experiences in this regard.
+
+We have devised such a structure as part of our work in which we contribute results in a tree organized by organization, resource, application, and experiment. As the application benchmark workflow results are uniformly formatted, they can easily merged and analyzed across organizations and resources. 
+}
+

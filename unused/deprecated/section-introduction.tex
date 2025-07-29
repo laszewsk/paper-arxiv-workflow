@@ -1,0 +1,68 @@
+\section{Introduction}
+
+In this paper, we summarize some of the insights that e we obtained for
+a High-Performance Computing Big Data Systems applied to the
+MLCommons Earthquake Benchmarks Efforts. This includes
+insights into the usability of the HPC Big Data Systems, The usage of
+an MLCommons benchmarks and the insights from the applicability in
+educational efforts.
+
+Benchmarking is an important effort in using HPC Big Data systems.
+While using benchmarks we can compare the performance of various
+systems.  We can also evaluate the overall performance of the system
+and identify potential areas of improvements and optimizations
+either on the system side or the algorithmic performance.
+
+While for traditional HPC systems often the pure
+computational power is measured such as projected by the Top500, it is
+also important to incorporate the file system performance as it can
+considerably impact the computation time. This is especially the case
+when fast GPUs are used that need to be fed with data at an adequate
+rate to perform well. If file systems are too slow the expensive
+specialized GPUs can not be adequately utilized.
+
+Benchmarks also offer a common way to communicate the results to its
+users that includes users from the educational community. Students
+have often an easier time reproducing a benchmark and assessing the
+impact of various parameters modified as part of it to explore how an
+algorithm may behave. This is especially the case in deep learning
+where a variety of hyperparameters can be modified.
+
+Such parameters should include not only parameters related to
+the algorithm itself, but also to explore different systems parameters
+such as those impacting data access performance or even energy
+consumption.
+
+The paper is structured as follows. First, we provide an introduction to
+MLCommons (Section \ref{sec:mlcommons}).  Next, we provide some
+insights about Machine Learning in education as it relates to this
+paper, but can be generalized to other efforts
+(Section~\ref{sec:edu-ml}). We then specifically analyze which
+insights we gained practically from using MLCommons in educational
+efforts (Section~\ref{sec:edu-mlcommons-insights}). After this we
+focus on the Earthquake Forecasting application, describe it
+(Section~\ref{sec:eq}) and identify specifically our insights in the
+data managemnet for this application (Section~\ref{sec:eq-data}).
+
+As the application used is time consuming and hits at the policy
+limitations of the educational HPC data system a special workflow
+system has been designd to ccordinate the many task needed to conduct
+a comprehensie analysis (Section~\ref{sec:workflow-main}). This
+includes the creation of an enhanced batch queue mechanism that
+bypasses the polocy limitations but makes management of the many jobs
+simple (Section~\ref{sec:workflow-sbatch}). In addition we developed a
+grahical compute coordiantor that enables to visualize the execution
+of the jobs in a generalized simple workflow system
+(Section~\ref{sec:workflow-cc}).  To showcase the performance
+(Section~\ref{sec:perf-main}) of the eartquake forecasting
+application, present data for the runtime
+(Section~\ref{sec:perf-runtime}) and for the energy
+(Section~\ref{sec:perf-energy}).
+
+
+
+todo integrate: 
+
+\citep{las-22-arxiv-workflow-cc}
+\citep{las-infogram}
+\citep{las-workflow,las07-workflow}

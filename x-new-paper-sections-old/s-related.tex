@@ -1,0 +1,200 @@
+% SEAN LEADING THIS PART
+%
+% This is a bunch of subsections to be located into "Related
+% Work" as part of Section 2.
+%
+% Target length: 2 pages maximum
+%
+% Also, we need to integrate "related-harshad.tex" into this, too.
+%
+% You can also source some material from the existing Related Research section. For example, in Wes's bio there is a section about Surrogate Model Workflows that could be moved to "Emerging Workflows" subsection.
+%
+% From a note from Gregor: The paper is structured as follows. First, we summarize relevant research done by the coauthors of this paper that addresses many issues related to workflows and are directly related to activities the authors have been involved with (Section \ref{sec:related}).
+%
+
+\section{Related Work}
+\label{sec:related}
+
+In recent years, significant progress has been made in the development and standardization of community-driven workflow benchmarks for High Performance Computing (HPC). This section reviews the key related work in this area, structured into several key topics. First, we explore the evolution of workflow management systems (WMS), which form the backbone of benchmark execution and automation in HPC environments. Next, we categorize and discuss various types of workflows, ranging from traditional workflows to newer paradigms that are still emerging, including HPC-specific workflows and those designed for hybrid HPC/AI applications, such as large language models (LLMs). Finally, we examine workflow benchmarks themselves, highlighting efforts to establish standardized metrics and methodologies for performance evaluation across different systems. By reviewing these areas, we aim to provide a comprehensive understanding of the current landscape and identify gaps for future development in community benchmark workflows for HPC.
+
+
+\subsection{Workflow Management Systems}
+
+A workflow management system (WMS) is an essential tool for automating and orchestrating complex computational processes, particularly in HPC environments. There are more than 360 known workflow management systems, each tailored to meet specific needs within diverse application domains, and the list (see \citep{workflow-list}) is growing. These systems vary widely in design and functionality, reflecting the unique requirements of the workflows they support. The choice of WMS is heavily influenced by the characteristics of the workflows themselves, such as scale, complexity, computational resources, and the type of tasks being executed.
+
+In HPC, workflows can range from traditional batch processing jobs to sophisticated, data-intensive simulations and AI-driven applications. As workflows differ significantly across domains, so too do their management systems, which are designed with varying levels of parallelism, fault tolerance, scheduling algorithms, and scalability to address these needs. While some WMS are highly specialized for certain kinds of scientific computing or data analysis, others are built for more general-purpose or hybrid computing environments, reflecting the diversity of computational tasks encountered in modern HPC research. Thus, rather than adhering to a single standardized architecture, WMS design is deeply influenced by the specific demands and constraints of the workflows they support.
+
+
+\subsection{Workflows}
+
+Despite the critical role they play in organizing, automating, and optimizing complex scientific computations across various domains, computational workflows suffer from the lack of community consensus regarding what specifically defines a {\em\bf workflow} \citep{ferreira_da_silva2022, wilkinson2025}. Workflows can be designed to handle a broad range of tasks, from traditional batch jobs to emerging data-driven and AI-centric processes. This section discusses three categories of workflows: traditional workflows, {\em\bf emerging} workflows, and HPC/AI workflows, each of which has unique characteristics and requirements.
+
+\subsubsection{Traditional Workflows}
+
+Traditional computational workflows are well-established, often utilizing systems such as Pegasus \citep{www-pegasus} and Kepler \citep{www-kepler}. These systems have been widely used in scientific computing and high-throughput environments, where workflows typically involve a series of interdependent tasks that must be executed in a specified order. These workflows often consist of batch processing jobs that execute simulations, analyses, or data processing pipelines, where the main challenge is ensuring the reliability, scalability, and efficient scheduling of tasks across distributed computing resources.
+
+% Pegasus is a widely used workflow management system that supports the execution of large-scale scientific workflows across diverse environments, from clusters to supercomputers. It is known for its robustness in handling complex, data-intensive tasks that span multiple compute resources. Similarly, Kepler provides a graphical user interface for building scientific workflows, with a focus on ease of use and integration with a variety of tools and data sources. Both systems emphasize fault tolerance and the ability to scale, as well as ensuring reproducibility of scientific experiments, making them staples in traditional scientific and HPC applications.
+
+\subsubsection{Emerging Workflows}
+
+Emerging workflows are characterized by their adaptability to modern, dynamic environments, where workflows are not merely static task lists but instead are flexible and configurable based on system or resource availability. Tools like Nextflow \citep{di_tommaso_nextflow_2017}, Parsl 
+ \citep{babuji2019}, Globus Compute (formerly known as funcX \citep{chard2020}), and ExaWorks \citep{alsaadi2024} represent the evolution of workflow management in response to new computational paradigms, such as cloud computing, distributed systems, and high-performance heterogeneous environments.
+
+Nextflow, for example, provides a platform for building and running scalable data-driven workflows, integrating seamlessly with cloud and high-performance computing infrastructures. It supports a variety of computational platforms, including Kubernetes and SLURM, and facilitates FAIR workflows \citep{wilkinson2025, wilkinson2022} through integration with WorkflowHub \citep{gustafsson2024} and reproducibility through version-controlled, containerized environments. Parsl, similarly, is designed for parallel and distributed computing, using Python to define workflows and enabling dynamic task scheduling based on resource availability. Globus Compute is a serverless function execution framework that abstracts away many of the complexities of managing compute resources, allowing users to focus on defining tasks rather than infrastructure. ExaWorks is a more recent entrant that emphasizes flexible workflows capable of scaling to exascale HPC systems, handling both data-intensive and compute-intensive tasks efficiently, by combining the strengths of several WMSs into one software development kit.
+
+These emerging systems are typically designed with the flexibility to work in hybrid, heterogeneous environments where workflows must adapt to changing computational resources, from cloud instances to high-performance clusters and supercomputers.
+
+\subsubsection{HPC-AI workflows and LLMs}
+% Sean and Wes will work on this together
+
+% There are two components to this:
+% * requirements for these systems
+% * related work that Gregor didn't write
+
+% From reviewer:
+% - Most of the requirements presented in Section 3 (subsections 3.1-3.6) are fairly well-known requirements and challenges in the HPC community and have been discussed in many publications. Hence, subsections 3.1-3.6 do not contribute much in terms of new insights. Instead, a more in-depth description and discussion of emerging workflow trends (such as digital twins, AI applications, and in situ, streaming, interactive analysis of extremely large datasets) would be more interesting and valuable contributions.
+
+% THIS IS A GOOD PLACE TO INSERT MATERIAL FROM HARSHAD'S VERSION.
+
+The growing convergence of HPC and artificial intelligence (AI) has led to the emergence of specialized workflows that combine traditional computational tasks with modern AI-driven approaches \citep{mcclure2020}. A notable subset of these workflows involves large language models (LLMs), which require highly specialized computational infrastructure and advanced workflow management techniques. HPC/AI workflows often involve stages such as pre-processing large datasets, training machine learning models, and fine-tuning LLMs, all of which demand substantial computational resources, parallelism, and advanced orchestration.
+
+HPC/AI workflows are typically defined in environments such as TensorFlow, PyTorch, and other deep learning frameworks, where the workflow management must ensure efficient data pipeline handling, distributed training, and scalable execution. LLMs, such as GPT \citep{gpt-report} and BERT \cite{bert-report}, are often incorporated into these workflows at various stages, from model pretraining on massive datasets to fine-tuning for specific tasks in natural language processing. These workflows require not only the ability to scale across multiple nodes but also sophisticated task scheduling and resource management to accommodate the substantial computational and memory demands of training and inference with LLMs.
+
+LLMs are computationally expensive methods that need to be trained primarily on large amounts of data. Training LLMs often requires hundreds to thousands of graphics processing units (GPUs)~\citep{jiang2024megascalescalinglargelanguage}. These GPUs must have sufficient video random access memory (VRAM) such that they can retain model parameters, often in the magnitude of billions or trillions, during training. The input data required to train the LLM, such as text corpora, demands large disk requirements; for example, Common Crawl, a repository of web data, uses hundreds of terabytes~\citep{8311752}. Running inference on LLMs is much more feasible, even for at-home computing environments, where resource-friendly LLMs such as Gemma \citep{gemma} or Vicuna-7b can fit their 14GB VRAM requirement within a high-end consumer GPU~\citep{xu2024surveyresourceefficientllmmultimodal}.
+HPC workflows offer high-performance computing capabilities that allow LLMs to quickly and efficiently process massive amounts of data. This is especially relevant as LLMs are driving compute requirements towards Zettaflop levels, which HPC systems are well-tuned to address \citep{ferreira_da_silva2024}.
+
+In the context of large-scale AI applications, workflow systems often integrate with specialized hardware, such as GPUs and Tensor Processing Units (TPUs), and must ensure optimal utilization of these resources across a distributed network. Workflow management tools in this domain must also handle the intricacies of model versioning, data pipelines, and monitoring across potentially heterogeneous architectures. This makes HPC/AI workflows, especially those involving LLMs, some of the most complex and resource-demanding workflows in modern computational research.
+
+
+\subsection{Workflow Benchmarks}
+
+The growing complexity and heterogeneity of high-performance computing (HPC) workflows have led to an increasing need for standardized benchmarking approaches \citep{badia2024integrating}. Several recent efforts have focused on developing frameworks and methodologies to evaluate workflow performance systematically. Among these, WfCommons \citep{coleman2022-1}, WfBench \citep{coleman2022-2}, and OpenEBench \citep{Capella-Gutierrez2017} provide significant contributions to the field.
+
+WfCommons \citep{coleman2022-1} is a comprehensive framework that provides tools for the modeling, generation, and benchmarking of scientific workflows. It enables users to extract workflow characteristics from real-world executions, generate synthetic yet realistic workflow instances, and evaluate workflow execution on different computing environments. By facilitating workflow reproducibility and comparison, WfCommons serves as an essential tool for both workflow designers and HPC researchers.
+
+WfBench \citep{coleman2022-2} is a dedicated benchmarking framework designed to evaluate workflow management systems (WMS) in terms of their execution efficiency, scalability, and resource utilization. It provides a set of predefined benchmarking workloads that mimic real scientific applications, allowing researchers to assess how different WMS implementations perform under varying computational loads. By systematically comparing workflow execution across platforms, WfBench aids in identifying performance bottlenecks and optimizing resource allocation.
+
+OpenEBench \citep{Capella-Gutierrez2017}, developed as part of the European Open Science Cloud (EOSC) initiative, focuses on benchmarking workflows within life sciences. It provides a collaborative platform for evaluating workflow robustness, scalability, and reproducibility by leveraging community-driven benchmarking datasets. OpenEBench facilitates comparative analyses of bioinformatics workflows, ensuring that computational pipelines meet the demands of scientific reproducibility and efficiency.
+
+These efforts collectively contribute to advancing workflow benchmarking methodologies, enabling the HPC community to develop more efficient and scalable workflows. By standardizing benchmarking practices, these frameworks help researchers optimize performance and resource utilization in increasingly complex computational environments.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+ 
+Sean Wilkinson to Everyone (Feb 20, 2025, 3:40 PM)
+https://www.osti.gov/servlets/purl/1489443
+
+
+
+@conference{vazhkudai2018,
+  author       = {Vazhkudai, Sudharshan and de Supinski, Bronis R. and Bland, Buddy and Geist II, Al and Grinberg, Leopold and Yin, Junqi and Sexton, James and Kahle, Jim and Zimmer, Christopher and Atchley, Scott and others},
+  title        = {The Design, Deployment, and Evaluation of the CORAL Pre-Exascale Systems},
+  doi          = {10.1109/SC.2018.00055},
+  url          = {https://www.osti.gov/biblio/1564142},
+  place        = {United States},
+  organization = {Oak Ridge National Lab. (ORNL), Oak Ridge, TN (United States)},
+  year         = {2018},
+  month        = {11}}
+
+
+a) we need to have a new related work section that does not only include our papers. I hoped to avoid this. Thus the immediate action is to create such a document with citations. Please all help on that. Maybe we are lucky and find the reviewer's papers so they are less likely to think we do not cite the right things. 
+
+I think we need to address
+
+1) HPC workflows
+
+2) Grid and cloud like stuff
+
+3) AI related workflows including AI hyperparameter searches, in situ and digital twins, likely now also LLM support
+
+4) others we think about 
+
+We put them in a new tex file related.tex 
+
+
+https://workflows.community/
+
+ask shantenu about the workflow systems
+
+denis and geoffrey wrote overview paper
+
+Raj Buja
+
+ISI 
+
+
+cubeflow, cloud community ....
+google pathways paper
+
+examining the challanges of scientific workflows, Gill
+https://ieeexplore.ieee.org/document/4404805
+
+@ARTICLE{4404805,
+  author={Gil, Yolanda and Deelman, Ewa and Ellisman, Mark and Fahringer, Thomas and Fox, Geoffrey and Gannon, Dennis and Goble, Carole and Livny, Miron and Moreau, Luc and Myers, Jim},
+  journal={Computer}, 
+  title={Examining the Challenges of Scientific Workflows}, 
+  year={2007},
+  volume={40},
+  number={12},
+  pages={24-32},
+  keywords={Collaborative work;Application software;Distributed computing;Acceleration;Earthquakes;Concurrent computing;computing practices;scientific workflows;collaboratories},
+  doi={10.1109/MC.2007.421}}
+
+
+LLM and AI google pathways paper.
+https://arxiv.org/abs/2203.12533
+
+
+MLFlow, cubeflow (kubernetis) 
+
+radical pilot
+CYLON and latest arups paper.
+
+
+
+
+
+@article{badia2024integrating,
+  title={Integrating HPC, AI, and Workflows for Scientific Data Analysis},
+  author={Badia, Rosa M and Berti-Equille, Laure and da Silva, R Ferreira and Leser, Ulf},
+  journal={Dagstuhl Reports},
+  volume={13},
+  number={8},
+  pages={129--164},
+  year={2024},
+\url{https://info.ornl.gov/sites/publications/Files/Pub210654.pdf}
+} 
+
+
+LAST REVIERE MAY MEAN
+
+Here at ORNL, we are using the OLCF Test Harness (OTH):
+https://github.com/olcf/olcf-test-harness
+
+Here is a paper that describes using it for acceptance testing when planning for Frontier:
+https://cug.org/proceedings/cug2020_proceedings/includes/files/spec111s1.pdf
+
+@inproceedings{larrea2020towards,
+  title={Towards acceptance testing at the exascale frontier},
+  author={Larrea, Ver{\'o}nica G Vergara and Brim, Michael J and Tharrington, Arnold and Budiardja, Reuben and Joubert, Wayne},
+  booktitle={Proceedings of the Cray User Group 2020 conference},
+  year={2020}
+}
+
+Here's a paper out of ANL that discusses using Jenkins and ReFrame for acceptance testing of Polaris:
+https://cug.org/proceedings/cug2023_proceedings/includes/files/pap109s2-file1.pdf
+
+@article{homerding2023polaris,
+  title={Polaris and Acceptance Testing},
+  author={Homerding, Brian and Lenard, Ben and Blackworth, Cyrus and Holohan, Carissa and Kulyavtsev, Alex and McPheeters, Gordon and Pershy, Eric and Rich, Paul and Waldron, Doug and Zhang, Michael and others},
+  year={2023}
+}
+Veronica et al's paper in related work mentions several other frameworks that are being used for regression testing and benchmarking.
+
+Hope this helps.
+
+Wes
+
+\end{comment}

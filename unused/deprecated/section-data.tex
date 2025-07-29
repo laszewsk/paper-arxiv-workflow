@@ -1,0 +1,126 @@
+\section{Insights into Data Management from the Earthquake Forecasting Application}}
+\label{sec:eq-data}
+
+In data management, we are currently concerned with various aspects of
+the data set, the data compression and storage, as well as the data
+access speed. We discuss insights into each of them in the next Sections.
+
+\subsection{Data Sets}
+
+When dealing with datasets we typically encounter several issues.
+These issues are addressed by the MLCommons benchmarks and
+data management activities so that they provide ideal candidates for
+education without spending an exorbitant amount of time on data. Such
+issues typically include access to data wihout privacy restrictions,
+data preprocessing that makes the data suitable for deep learning,
+data labeling in case they are part of a well-defined MLCommons
+benchmark. Other issues include data bias, noisy or missing data, as
+well as overfitting while using training data. Typically the MLCommons
+benchmarks will be designed to have no such issues, or they have
+minimal issues. However, some benchmarks such as the science group
+benchmarks which are concerned with improving the science will have to
+potentially address these issues in order o improve the accuracy. This
+could include even injecting new data and different preprocessing
+methods.
+
+
+\subsection{Data compression}
+
+An issue that is of utmost importance especially for large data sets
+is how the data is represented. For example, for the earthquake
+benchmark, we found that the original dataset was 11GB big. However,
+we found that the data can be easily compressed by a factor of
+100. This is significant, as in this case the entire dataset can be
+stored in Github. The compressed xz archive file is only 21 MB and
+downloading only the archive file using wget takes 0.253s. In case the
+dataset and its repository are downloaded with Git we note that the
+entire Git repository is
+108MB~\citep{mlcommons-earthquake-data}. Downloading this compressed
+dataset only takes 7.723s. Thus it is preferred to just download the
+explicitly used data using for example wget. In both cases, the data
+is compressed. To uncompress the data it will take an additional 1
+minute and 2.522 seconds. However, if we were to download the data in
+uncompressed form it would take approximately 3 hours and 51 seconds.
+
+From this simple example, it is clear that MLCommons benchmarks can
+provide insights into how data is managed and delivered to for example
+large-scale compute clusters with many nodes while utilizing
+compression algorithms. We will next discuss insights into
+infrastructure management while using filesystems in HPC resources.
+While often object stores are discussed to host such large datasets it
+is imperative to identify the units of storage in such object stores.
+In our case, an object store that would host individual data records is
+not useful due to the vast number of data points. Therefore the best
+way to store this data even in an object store is as a single entry of
+compressed overall data.
+
+
+\subsection{Data Access}
+
+Besides having proper data and being able to download it efficiently
+from the location of storage, it is imperative to be able to access it
+in such a way that the GPUs used for deep learning are being fed with
+enough data without being idle. The performance results were somewhat
+surprising and had a devastating effect on the overall execution time
+that were twice as fast on the personal computer while using an
+RTX3090 in contrast to using the HPC center recommended filesystems
+when using an A100. For this reason, we have made a simple test and
+measure the performance to read access the various file systems. The
+results are shown in Table~\ref{tab:file-performance} which include
+various file systems at the University of Virginias Rivanna HPC but also a
+comparison with a personal computer from a student.
+
+Based on this observation it was infeasible to consider running the
+earthquake benchmark on the regularl configured HPC nodes as they ran
+on some resources for almost 24 hours. This is also the limit the
+Rivana system allows for one job. Hence we were allowed to use a
+special compute node that has additional NVMe storage available and
+accessible to us. On those nodes (in the Table listed as
+\verb|/localsratch|) we were able to obtain a very suitable performance
+for this application while having a 10 times fold increase in access in
+contrast to the scratch file system and almost double the performance
+given to us on the project file system. The /tmp system although being
+fast was for our application not sufficiently large and also performs
+slower than the \verb|/localscratch| set up for us. In addition, we
+also made an experiment using a shared memory-based hosted filesystem
+in the nodes RAM.
+
+
+What we learn from this experience is that an HPC system must provide
+a fast file system locally available on the nodes to serve the GPUs
+adequately. The computer should be designed form that start to not
+only have the fastest possible GPUs for large data processing, but
+also a very fast filesystem that can keep up with the data input
+requirements presented by the GPU. Furthermore, in case updated GPUs
+are purchased it is not sufficient to just take the previous
+generation motherboard and CPU processor and memory, but to update the
+hardware components and include a state-of-the-art compute note. This
+often prevents the repurposing of the node while adding just GPUs.
+
+\begin{table}[htb]
+  \caption{Filetransfer performance of various file systems on Rivanna}
+  \label{tab:file-performance}
+  \begin{center}
+  {\footnotesize 
+  \begin{tabular}{llrrrp{4.5cm}}
+    Machine & File systems & \multicolumn{2}{l}{Bandwidth Performance} & Speedup & Description \\
+    \hline
+    Rivanna & \verb|/scratch/$USER  (sbatch)|     & 30.6MiB/s & 32.1MB/s  & 1.0 & shared scratch space, batch mode \\
+    Rivanna & \verb|/scratch/$USER (interactive)| & 33.2MiB/s &  34.8MB/s  & 1.1 & shared scratch space, interactive \\
+    Rivanna & \verb|/home/$USER|                    & 40.9MiB/s & 42.9MB/s  & 1.3 & users home directory \\
+    MacM1   & \verb|/| & 93.2MiB/s & 97.7MB/s & 3.0 & users homedir \\
+    Rivanna & \verb|/project/$PROJECTID |     & 100 MiB/s  & 105 MB/s  & 3.3 & project specific filesystem \\
+    Personal Computer  & \verb|c:| & 187 MiB/s  & 196 MB/s  & 6.1 &  file system on a personal computer \\
+    Rivanna & \verb|/tmp|                         & 271 MiB/s  & 285 MB/s  & 8.9 & temporary file system on a node \\
+    \hline
+    Special Node Rivanna & \verb|/localscratch|  &  384 MiB/s & 403 MB/s  & 12.6 & NVMe storage of the node\\
+    RAM disk Rivanna  & \verb|/dev/shm/*|      &             461 MiB/s & 483MB/s  & 15.1 & simulated filesystem in a RAM disk\\
+    Personal Computer & \verb|/home/$USER| & 579 MiB/s & 607 MB/s &  18.9 & Sabrent 2TB NVMe\\
+    \hline                                             
+    \end{tabular}
+  \end{table}
+  \end{center}
+  }
+
+
+  
