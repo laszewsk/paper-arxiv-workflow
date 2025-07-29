@@ -37,7 +37,7 @@ detail and refer to the provided references as they also provide
 valuable lessons in regard to integration of provisioning into
 workflows.
 
-\input{vonLaszewski-frontiers-graph}
+\input{vonLaszewski-2025-graph}
 
 
 {\bf Brewer} has most recently focused on  {\bf Surrogate Model Workflows}. Figure \ref{fig:surrogate} provides a schematic of a typical machine-learned \textit{surrogate model} training and deployment workflow. Simulations are run on HPC using a variety of input parameters, from which data is extracted to curate a training dataset. Intelligent subsampling techniques, such as the principal of maximum entropy \cite{brewer2023entropy}, are used to curate an optimal training dataset. Hyperparameter optimization, such as DeepHyper \cite{balaprakash2018deephyper} or DLEO \cite{martinez2018deep}, is used to perform neural architecture search (NAS) in order to design an optimal architecture. Model validation techniques, such as using PI3NN \cite{liu2021pi3nn} use prediction intervals to assess proper coverage of the training data (in-distribution vs. out-of-distribution) via uncertainty quantification. Finally, optimal deployment studies are performed to determine the optimal deployment parameters, such as concurrency, batch size, and precision \cite{brewer2021production}. The surrogate model may be deployed as a means of replacing a computationally expensive portion of the simulation, for example, the machine-learned turbulence model \cite{bhushan2021development}, or replace the entire simulation, e.g., FourCastNet climate model \cite{pathak2022fourcastnet}.
@@ -81,17 +81,19 @@ To provide a better view of the various aspects of workflows we have organized t
 %Harshad writes after README.md completed
 
 
-
+\clearpage
 % \bibliographystyle{Frontiers-Harvard}
-\newpage
 
 \bibliographystyle{Frontiers-Vancouver} % Many Frontiers journals
 % use the numbered referencing system, to find the style and resources
 % for the journal you are submitting to:
 % https://zendesk.frontiersin.org/hc/en-us/articles/360017860337-Frontiers-Reference-Styles-by-Journal
 
+\bibliographystyle{ACM-Reference-Format}
+%\bibliographystyle{acm}
+
 \bibliography{%
-vonLaszewski-frontiers-citations}
+vonLaszewski-2025-workflow}
 
 \end{document}
 

@@ -122,7 +122,7 @@
 
 \usepackage{forest}
 
-
+\definecolor{BrickRed}{rgb}{0.8, 0.25, 0.33}
 
 \lstset{
   % basicstyle=\scriptsize\ttfamily,
@@ -234,7 +234,7 @@
   \country{USA}}
 
 
-\renewcommand{\shortauthors}{G. von Laszewski et al.}
+% \renewcommand{\shortauthors}{G. von Laszewski et al.}
 
 
 %\def\corrAuthor{Gregor von Laszewski, Biocomplexity Institute,
@@ -260,6 +260,31 @@
 \fancyfoot{}
 \fancyhead{}
 
+
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>cssClassifiers^500</concept_id>
+       <concept_desc></concept_desc>
+       <concept_significance>cssClassifiers^500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10010147.10010919</concept_id>
+       <concept_desc>Computing methodologies~Distributed computing methodologies</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10010147.10010919.10010172</concept_id>
+       <concept_desc>Computing methodologies~Distributed algorithms</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[cssClassifiers^500]{}
+\ccsdesc[500]{Computing methodologies~Distributed computing methodologies}
+\ccsdesc[500]{Computing methodologies~Distributed algorithms}
+
 \begin{document}
 
 % outcomment toc when submitting
@@ -277,15 +302,15 @@
 % \makeatletter\newcommand{\tableofcontents}{\@starttoc{toc}}\makeatother
 
 
-{\bf \TITLE}
+%{\bf \TITLE}
 
-{\Authors}
+%{\Authors}
 
-{\Address}
+%{\Address}
 
-\bigskip
+%\bigskip
 
-\tableofcontents
+%\tableofcontents
 
 %
 % OUTCOMMENT LINES ABOVE
@@ -294,13 +319,13 @@
 
 \title{\TITLE}
 
-\firstpage{1}
+% \firstpage{1}
 
-\author[\firstAuthorLast ]{\Authors} %This field will be automatically populated
-\address{} %This field will be automatically populated
-\correspondance{} %This field will be automatically populated
+%\author[\firstAuthorLast ]{von Laszewski} %This field will be automatically populated
+%\address{} %This field will be automatically populated
+% \correspondance{} %This field will be automatically populated
 
-\extraAuth{}
+% \extraAuth{}
 
 % If there are more than 1 corresponding author, comment this line and
 %uncomment the next one.  \extraAuth{corresponding Author2
@@ -309,10 +334,6 @@
 %Code2, X2 Country X2, email2@uni2.edu}
 
 
-
-\maketitle
-\pagestyle{plain}
-\thispagestyle{empty}
 
 
 
@@ -337,13 +358,18 @@
 We have verified this approach based on the experiences of two independently developed software tools and frameworks that upon closer inspection provide a large amount of overlap in functionality. These systems are the Experiment Executor which is part of a larger bag of services distributed as part of Cloudmesh that has been used for more than a decade, as well as SmartSim developed by Hewlett Packard Enterprise which similarly addresses experiment management. These frameworks have been tested on various scientific applications. In our earlier work, this was done on two scientific applications: conduction cloudmask and earthquake prediction. More recently this work was extended to include experiment executions that involve the interaction of simulation and AI/ML. Lastly, we focus on how these frameworks are also simplifying the development of a surrogate for computational fluid dynamics.
 
 
-\tiny \keyFont{ \section{Keywords:} deep learning, benchmarking, hyper
+{\bf Keywords:} deep learning, benchmarking, hyper
   parameter search, hybrid heterogeneous hyperparameter search,
-  scientific benchmark, Cloudmesh, SmartSim}
+  scientific benchmark, Cloudmesh, SmartSim
 
 % All article types: you may provide up to 8 keywords; at least 5 are mandatory.
 
 \end{abstract}
+
+\maketitle
+\pagestyle{plain}
+\thispagestyle{empty}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -788,15 +814,15 @@ The architecture of the framework is depicted in Figures \ref{fig:cc-2} A and B.
 \begin{figure*}[htb]
 
   \ifbool{SUBMISSION}{  
-      \centering\includegraphics[width=1.0\columnwidth]{images/fig3}
+      \centering\includegraphics[width=1.0\textwidth]{images/fig3}
   }{
-    \centering\includegraphics[width=0.70\columnwidth]{images/cloudmesh-cc-new}
+    \centering\includegraphics[width=0.70\textwidth]{images/cloudmesh-cc-new}
     
     {\bf (A)} General architecture of the integrated Cloudmesh {\bf Compute Coordinator} and {\bf Experiment Executor} \citep{las-frontiers-edu}.
 
 \bigskip\bigskip
     
-    \centering\includegraphics[width=1.0\columnwidth]{images/cloudmesh-ee-new}
+    \centering\includegraphics[width=1.0\textwidth]{images/cloudmesh-ee-new}
     
     
     {\bf (B)} General architecture of Cloudmesh Experiment Executor interfacing with abstract schedulers \citep{las-frontiers-edu}.
@@ -1203,7 +1229,8 @@ AWS Kubernetes  & in progress & \NO \\
 }
 \end{table*}
 
-
+% REMOVE COMMENT
+%\begin{comment}
 
 \begin{table*}[htbp]
 \caption{Requirements addressed by the two experiment executors.}
@@ -1267,8 +1294,7 @@ Template Repositories & self-managed    &  self-managed  \\
 \hline
 Experiment Reporting &  self-managed   & self-managed   \\ 
 \hline
-Runtime support for dynamic, Cyclic, pipeline, and DAG \hline
-Executions &     \YES & \YES \\
+Runtime support for dynamic, Cyclic, pipeline, and DAG Executions &     \YES & \YES \\
 \hline
 Runtime Batch Queuing Integration &  \YES   & \YES   \\
 \hline
@@ -1282,6 +1308,8 @@ issues    & Redis, will likely replace redis due to license change \\
 \end{tabular}
 }
 \end{table*}
+
+%\end{comment}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1300,12 +1328,12 @@ The Open Surrogate Model Inference (OSMI) benchmark was developed as an open-sou
 
 Work is in progress to incorporate this type of in-the-loop inference into MLCommons. The initial effort implements the configuration and execution of the benchmark with both SmartSim and Cloudmesh. As expected, because the distilled requirements for OSMI are fulfilled by both solutions, no changes needed to be made to either package to implement. Notably, the key requirements were the ability to interface with the workload manager, configure variations of the benchmark, and execute the benchmark on HPC resources. The portability is being tested by execution on both Department of Energy HPC platforms and academic clusters.
 
-\begin{figure*}[htb]
+\begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{images/osmi_arch.png}
     \caption{Architecture of OSMI benchmark.}
     \label{fig:osmi}
-\end{figure*}
+\end{figure}
 
 \begin{table}[htb]
 \centering
@@ -1650,8 +1678,7 @@ The code is all in the public domain and available on GitHub at the following lo
 % for the journal you are submitting to:
 % https://zendesk.frontiersin.org/hc/en-us/articles/360017860337-Frontiers-Reference-Styles-by-Journal
 
-\bibliography{%
-vonLaszewski-frontiers-citations}
+\bibliography{vonLaszewski-2025-workflow}
 
 \end{document}
 

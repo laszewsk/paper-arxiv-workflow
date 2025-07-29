@@ -1,5 +1,6 @@
-FILENAME=vonLaszewski-frontiers-workflow
-DIR=paper-frontier
+FILENAME=vonLaszewski-2025-workflow
+DIR=paper-frontiers
+DIR=paper-arxiv
 
 # .PHONY: $(FILENAME).pdf
 
@@ -39,6 +40,7 @@ clean:
 	rm -f *_bibertool.bib
 	rm -f *.ttt
 	rm -f *.blg
+	rm -f *.aux
 
 latexdiff-setup:
 	mkdir -p tmp
@@ -60,9 +62,6 @@ regular:
 	pdflatex $(FILENAME)
 	pdflatex $(FILENAME)
 
-log:
-	emacs -fh 80 $(FILENAME).log
-
 bib:
 	bibexport -o $(FILENAME)-citations.bib $(FILENAME).aux
 
@@ -77,8 +76,8 @@ biber:
 	biber -V --tool vonlaszewski.bib | fgrep -v INFO
 	@make -f Makefile clean
 
-zip: clean
-	cd ..; zip -x "*/.DS*" "*/*.git*" "*/*bin*" "*/*zip" "*/*.md" "*/Makefile" -r $(DIR)/$(FILENAME).zip $(DIR)
+#zip: clean
+#	cd ..; zip -x "*/.DS*" "*/*.git*" "*/*bin*" "*/*zip" "*/*.md" "*/Makefile" -r $(DIR)/$(FILENAME).zip $(DIR)
 
 flatzip: clean
 	zip -x "*.git*" "*bin*" "*zip" "*.md" "Makefile" -r $(FILENAME).zip .
@@ -88,3 +87,24 @@ publish:
 	cd ../../../laszewski/laszewski.github.io/papers; git add $(FILENAME).pdf
 	cd ../../../laszewski/laszewski.github.io/papers; git commit -m "update $(FILENAME)" $(FILENAME).pdf
 	cd ../../../laszewski/laszewski.github.io/papers; git push
+
+view:
+	open ${FILENAME}.pdf
+
+log:
+	code ${FILENAME}.log
+
+zip:
+	zip -x "*.git*" "*bin*" "*zip" "*.md" "Makefile" -r $(FILENAME).zip \
+	${FILENAME}.tex \
+	images \
+	${FILENAME}.bib \
+	${FILENAME}.pdf \
+	${FILENAME}.bbl \
+	concepts.tex \
+	info.tex \
+	s-related-research.tex \
+	table.tex \
+	vonLaszewski-2025-graph.tex \
+	vonLaszewski-2025-req-table.tex \
+	vonLaszewski-2025-table-compare.tex \
